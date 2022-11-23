@@ -1,6 +1,6 @@
 import 'package:defensa_civil/models/entidad.dart';
 import 'package:defensa_civil/models/parser.dart';
-import 'package:defensa_civil/utils/parse_manager.dart';
+import 'package:defensa_civil/utils/parser/parse_manager.dart';
 import 'package:http/http.dart' as http;
 
 

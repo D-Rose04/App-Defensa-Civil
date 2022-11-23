@@ -11,7 +11,6 @@ class Videos extends StatefulWidget {
   Videos({Key? key}) : super(key: key);
   final fetch = HttpFetcher(
       url: "https://adamix.net/defensa_civil/def/videos.php", tipo: "videos");
-  late Future<List<VideoModel>> videos;
 
   @override
   _VideosState createState() => _VideosState();
@@ -62,7 +61,8 @@ class _VideosState extends State<Videos> {
                     )
                   // ignore: prefer_const_constructors
                   : SliverToBoxAdapter(
-                      child: const Center(
+                      child: Container(
+                      height: MediaQuery.of(context).size.height,
                       child: Center(child: CircularProgressIndicator()),
                     ))
             ]),

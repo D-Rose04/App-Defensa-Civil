@@ -1,5 +1,6 @@
 import 'package:defensa_civil/models/parser.dart';
-import 'package:defensa_civil/utils/video_parser.dart';
+import 'package:defensa_civil/utils/parser/albergue_parser.dart';
+import 'package:defensa_civil/utils/parser/video_parser.dart';
 
 class ParserManager {
   static Parser? getParser(String tipo) {
@@ -8,6 +9,11 @@ class ParserManager {
     if (tipo == "videos") {
       parser = VideoParser();
     }
+
+    if(tipo == "albergues"){
+      parser = AlbergueParser();
+    }
+    
 
     return parser;
   }
