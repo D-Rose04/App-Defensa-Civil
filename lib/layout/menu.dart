@@ -91,15 +91,6 @@ class Menu extends StatelessWidget {
           },
         ),
         ListTile(
-          leading:
-              Icon(Icons.map, color: Theme.of(context).secondaryHeaderColor),
-          title: const Text("Mapa"),
-          onTap: () {
-            GoRouter.of(context).go('/mapa');
-            Navigator.pop(context);
-          },
-        ),
-        ListTile(
           leading: Icon(Icons.warning_amber_rounded,
               color: Theme.of(context).secondaryHeaderColor),
           title: const Text("Medidas preventivas"),
