@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 class Historia extends StatelessWidget {
   const Historia({Key? key}) : super(key: key);
 
+  //Comentario que sirve como prueba a la rama new-features-j
+
   @override
   // ignore: prefer_const_constructors
   Widget build(BuildContext context) => Scaffold(
