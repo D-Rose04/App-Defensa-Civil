@@ -1,5 +1,6 @@
 import 'package:defensa_civil/models/albergues_model.dart';
 import 'package:defensa_civil/models/entidad.dart';
+import 'package:defensa_civil/models/noticias_model.dart';
 import 'package:defensa_civil/models/video_model.dart';
 
 class ResponseModel {
@@ -22,6 +23,11 @@ class ResponseModel {
           if(tipo == "albergues"){
             return AlberguesModel.fromJson(d);
           }
+
+          if(tipo == "noticias"){
+            return NoticiasModel.fromJson(d);
+          }
+
         })),
         mensaje: json["mensaje"]);
   }

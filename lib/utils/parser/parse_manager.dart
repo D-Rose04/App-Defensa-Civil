@@ -1,5 +1,6 @@
 import 'package:defensa_civil/models/parser.dart';
 import 'package:defensa_civil/utils/parser/albergue_parser.dart';
+import 'package:defensa_civil/utils/parser/noticia_parser.dart';
 import 'package:defensa_civil/utils/parser/video_parser.dart';
 
 class ParserManager {
@@ -14,6 +15,9 @@ class ParserManager {
       parser = AlbergueParser();
     }
     
+    if(tipo == "noticias"){
+      parser = NoticiaParser(tipo: tipo);
+    }
 
     return parser;
   }

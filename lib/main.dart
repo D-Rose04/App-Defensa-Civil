@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     GoRoute(path: '/',builder: (context, state) => const Home()),
     GoRoute(path: '/historia',builder: (context, state) => const Historia()),
     GoRoute(path: '/servicios',builder: (context, state) => const Servicios()),
-    GoRoute(path: '/noticias',builder: (context, state) => const Noticias()),
+    GoRoute(path: '/noticias',builder: (context, state) => Noticias()),
     GoRoute(path: '/videos',builder: (context, state) => Videos()),
     GoRoute(path: '/albergues',builder: (context, state) => Albergues()),
     GoRoute(path: '/medidas',builder: (context, state) => const MedidasPreventivas()),
@@ -42,7 +42,8 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           labelLarge: TextStyle(color: Colors.white),
           bodyLarge: TextStyle(color: Colors.blue.shade900),
-          labelMedium: TextStyle(color: Colors.orange.shade900)
+          labelMedium: TextStyle(color: Colors.orange.shade900),
+          headlineSmall: TextStyle(color: Colors.blue.shade900,fontSize: 18,fontWeight: FontWeight.bold)
         )
       ),
     );
