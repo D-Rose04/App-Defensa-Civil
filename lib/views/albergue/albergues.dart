@@ -57,7 +57,7 @@ class _AlberguesState extends State<Albergues> with TickerProviderStateMixin {
                 icon: Icons.list_alt_outlined,
                 text: 'Listado',
               ),
-              const GButton(
+              const  GButton(
                 icon: Icons.map_outlined,
                 text: 'Mapa',
               ),
