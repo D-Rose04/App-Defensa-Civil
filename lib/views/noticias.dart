@@ -1,6 +1,8 @@
 import 'package:defensa_civil/models/noticias_model.dart';
 import 'package:defensa_civil/views/noticias_detalle.dart';
 import 'package:flutter/material.dart';
+import 'package:progressive_image/progressive_image.dart';
+
 
 import '../layout/menu.dart';
 import '../layout/navbar.dart';
@@ -75,9 +77,12 @@ class _NoticiasState extends State<Noticias> {
                                         left: 5, right: 5),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(5),
-                                      child: Image(
+                                      child: ProgressiveImage(
+                                        placeholder: const AssetImage("images/placeholder.png"),
+                                        thumbnail: NetworkImage(noticiaActual.foto),
                                         image: NetworkImage(noticiaActual.foto),
-                                        fit: BoxFit.contain,
+                                        height: 250,
+                                        width: MediaQuery.of(context).size.width,
                                       ),
                                     ),
                                   ),
@@ -106,7 +111,8 @@ class _NoticiasState extends State<Noticias> {
                   : SliverToBoxAdapter(
                       child: Container(
                       height: MediaQuery.of(context).size.height,
-                      child: Center(child: CircularProgressIndicator()),
+                      padding: const EdgeInsets.all(5),
+                      child: const Center(child: CircularProgressIndicator()),
                     ))
             ]),
           );
