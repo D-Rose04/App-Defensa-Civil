@@ -18,8 +18,8 @@ class Historia extends StatelessWidget {
         body: ListView(children: [
           Container(
             margin: const EdgeInsets.all(2.0),
-            child: Image.network(
-              "https://defensacivil.gob.do/images/slide/2021/logoNuevoDefensa.png",
+            child: Image.asset(
+              "images/logo.png",
               width: 180,
               height: 180,
             ),
