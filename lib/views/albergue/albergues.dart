@@ -4,6 +4,7 @@ import 'package:defensa_civil/models/albergues_model.dart';
 import 'package:defensa_civil/views/albergue/lista_albergues.dart';
 import 'package:defensa_civil/views/mapa.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import '../../models/entidad.dart';
 import '../../utils/http_fetcher.dart';
 
@@ -19,7 +20,7 @@ class Albergues extends StatefulWidget {
 
 class _AlberguesState extends State<Albergues> with TickerProviderStateMixin {
   late Future<List<Entidad>> data;
-  late TabBar myTabBar;
+  late PreferredSize? myTabBar;
   late TabController _tabController;
   late List<Widget> _views = [
     const Center(
@@ -28,30 +29,51 @@ class _AlberguesState extends State<Albergues> with TickerProviderStateMixin {
     const Center(child: Text("cargando"))
   ];
   List<AlberguesModel> albergues = [];
-
+  int _selectedIndex = 0;
   @override
   void initState() {
     data = widget.fetch.fetchData();
-    data.then((value) => value.forEach((element) {albergues.add(element.getData());}) );
+    data.then((value) => value.forEach((element) {
+          albergues.add(element.getData());
+        }));
     _tabController = TabController(length: 6, vsync: this);
     _tabController.animateTo(2);
 
-    myTabBar = const TabBar(
-        // ignore: prefer_const_literals_to_create_immutables
-        tabs: [
-          Tab(
-              icon: Icon(Icons.list_alt_rounded),
-              text: "Listado",
-              iconMargin: EdgeInsets.all(1)),
-          Tab(
-              icon: Icon(Icons.map_outlined),
-              text: "Mapa",
-              iconMargin: EdgeInsets.all(1)),
-        ]);
+    myTabBar = PreferredSize(
+        preferredSize: const Size.fromHeight(50),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8),
+          child: GNav(
+            activeColor: Colors.white,
+            gap: 5,
+            iconSize: 30,
+            padding: const  EdgeInsets.symmetric(horizontal: 55, vertical: 5),
+            duration: const Duration(milliseconds: 400),
+            tabBackgroundColor: Colors.indigo,
+            color: Colors.white,
+            // ignore: prefer_const_literals_to_create_immutables
+            tabs: [
+              const GButton(
+                icon: Icons.list_alt_outlined,
+                text: 'Listado',
+              ),
+              const  GButton(
+                icon: Icons.map_outlined,
+                text: 'Mapa',
+              ),
+            ],
+            selectedIndex: _selectedIndex,
+            onTabChange: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+          ),
+        ));
     super.initState();
     _views = [
       ListaAlbergues(data: data),
-      albergues.isEmpty? Mapa(coords: albergues):const Text("a"),
+      albergues.isEmpty ? Mapa(coords: albergues) : const Text("a"),
     ];
   }
 
@@ -61,19 +83,16 @@ class _AlberguesState extends State<Albergues> with TickerProviderStateMixin {
         future: data,
         builder: (context, snapshot) {
           return DefaultTabController(
-            length: 2,
-            child: Scaffold(
-                appBar: const NavBar(title: "Albergues"),
-                drawer: const Menu(),
-                body: TabBarView(
-                  physics: const BouncingScrollPhysics(),
-                  children: _views,
+              length: 2,
+              child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  title: const Text("Albergues"),
+                  bottom: myTabBar,
                 ),
-                bottomNavigationBar: Container(
-                    color: Theme.of(context).primaryColor,
-                    padding: const EdgeInsets.all(1),
-                    child: myTabBar)),
-          );
+                drawer: const Menu(),
+                body: _views.elementAt(_selectedIndex),
+              ));
         });
   }
 }
