@@ -7,7 +7,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: const NavBar(title: "Home",),
+        appBar: NavBar(title: "Home",),
         drawer: const Menu(),
         body: ListView(
           children: [

@@ -11,7 +11,7 @@ class Historia extends StatelessWidget {
   @override
   // ignore: prefer_const_constructors
   Widget build(BuildContext context) => Scaffold(
-        appBar: const NavBar(
+        appBar: NavBar(
           title: "Historia",
         ),
         drawer: const Menu(),

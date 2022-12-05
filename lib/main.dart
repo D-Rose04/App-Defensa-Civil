@@ -40,10 +40,10 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.orange.shade900,
         secondaryHeaderColor: Colors.blue.shade900,
         textTheme: TextTheme(
-          labelLarge: TextStyle(color: Colors.white),
+          labelLarge: const TextStyle(color: Colors.black,fontWeight: FontWeight.normal),
           bodyLarge: TextStyle(color: Colors.blue.shade900),
           labelMedium: TextStyle(color: Colors.orange.shade900),
-          headlineSmall: TextStyle(color: Colors.blue.shade900,fontSize: 18,fontWeight: FontWeight.bold)
+          headlineSmall: TextStyle(color: Colors.blue.shade900,fontSize: 18,fontWeight: FontWeight.bold),
         )
       ),
     );

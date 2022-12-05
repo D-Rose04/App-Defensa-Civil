@@ -31,7 +31,7 @@ class _VideosState extends State<Videos> {
         future: data,
         builder: (context, snapshot) {
           return Scaffold(
-            appBar: const NavBar(title: "Videos"),
+            appBar: NavBar(title: "Videos"),
             drawer: const Menu(),
             body: CustomScrollView(slivers: [
               snapshot.hasData
