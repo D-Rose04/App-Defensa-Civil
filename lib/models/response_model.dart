@@ -1,5 +1,6 @@
 import 'package:defensa_civil/models/albergues_model.dart';
 import 'package:defensa_civil/models/entidad.dart';
+import 'package:defensa_civil/models/miembros_model.dart';
 import 'package:defensa_civil/models/noticias_model.dart';
 import 'package:defensa_civil/models/video_model.dart';
 
@@ -20,14 +21,17 @@ class ResponseModel {
             return VideoModel.fromJson(d);
           }
 
-          if(tipo == "albergues"){
+          if (tipo == "albergues") {
             return AlberguesModel.fromJson(d);
           }
 
-          if(tipo == "noticias"){
+          if (tipo == "noticias") {
             return NoticiasModel.fromJson(d);
           }
 
+          if (tipo == "miembros") {
+            return MiembrosModel.fromJson(d);
+          }
         })),
         mensaje: json["mensaje"]);
   }
