@@ -43,8 +43,9 @@ class _MiembrosState extends State<Miembros> {
                           margin: const EdgeInsets.only(top: 10),
                           child: ListTile(
                             key: Key("$index"),
-                            // circle avatar need to change image.network
-                            leading: Image.network(miembroactual.foto),
+                            leading: CircleAvatar(
+                              backgroundImage: NetworkImage(miembroactual.foto),
+                            ),
                             title: Text(miembroactual.nombre),
                             subtitle: Text(miembroactual.cargo),
                           ),
