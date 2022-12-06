@@ -47,8 +47,15 @@ class _MiembrosState extends State<Miembros> {
                               maxRadius: 59,
                               backgroundImage: NetworkImage(miembroactual.foto),
                             ),
-                            title: Text(miembroactual.nombre),
-                            subtitle: Text(miembroactual.cargo),
+                            title: Text(miembroactual.nombre,
+                                style:
+                                    Theme.of(context).textTheme.headlineSmall),
+                            subtitle: Text(
+                              miembroactual.cargo,
+                              style: TextStyle(
+                                  color: Colors.orange.shade900,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         );
                       }),
