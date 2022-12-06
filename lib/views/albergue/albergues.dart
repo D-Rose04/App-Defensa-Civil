@@ -20,7 +20,6 @@ class Albergues extends StatefulWidget {
 
 class _AlberguesState extends State<Albergues> with TickerProviderStateMixin {
   late Future<List<Entidad>> data;
-  late PreferredSize? myTabBar;
   late TabController _tabController;
   late List<Widget> _views = [
     const Center(
@@ -39,37 +38,6 @@ class _AlberguesState extends State<Albergues> with TickerProviderStateMixin {
     _tabController = TabController(length: 6, vsync: this);
     _tabController.animateTo(2);
 
-    myTabBar = PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8),
-          child: GNav(
-            activeColor: Colors.white,
-            gap: 5,
-            iconSize: 30,
-            padding: const  EdgeInsets.symmetric(horizontal: 55, vertical: 5),
-            duration: const Duration(milliseconds: 400),
-            tabBackgroundColor: Colors.indigo,
-            color: Colors.white,
-            // ignore: prefer_const_literals_to_create_immutables
-            tabs: [
-              const GButton(
-                icon: Icons.list_alt_outlined,
-                text: 'Listado',
-              ),
-              const  GButton(
-                icon: Icons.map_outlined,
-                text: 'Mapa',
-              ),
-            ],
-            selectedIndex: _selectedIndex,
-            onTabChange: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-          ),
-        ));
     super.initState();
     _views = [
       ListaAlbergues(data: data),
@@ -79,17 +47,54 @@ class _AlberguesState extends State<Albergues> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    double width = (MediaQuery.of(context).size.width / 6) - 4;
+
     return FutureBuilder(
         future: data,
         builder: (context, snapshot) {
           return DefaultTabController(
               length: 2,
               child: Scaffold(
-                appBar: AppBar(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  title: const Text("Albergues"),
-                  bottom: myTabBar,
-                ),
+                appBar: NavBar(
+                  canSearch: true,
+                  data: data,
+                  tipo: "albergues",
+                  title: "Albergues",bottom: PreferredSize(
+                      preferredSize: const Size.fromHeight(50),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5.0, vertical: 8),
+                        child: GNav(
+                          activeColor: Colors.white,
+                          gap: 5,
+                          iconSize: 30,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: width, 
+                              vertical: 5
+                          ),
+                          duration: const Duration(milliseconds: 400),
+                          tabBackgroundColor:
+                              Theme.of(context).secondaryHeaderColor,
+                          color: Colors.white,
+                          // ignore: prefer_const_literals_to_create_immutables
+                          tabs: [
+                            const GButton(
+                              icon: Icons.list_alt_outlined,
+                              text: 'Listado',
+                            ),
+                            const GButton(
+                              icon: Icons.map_outlined,
+                              text: 'Mapa',
+                            ),
+                          ],
+                          selectedIndex: _selectedIndex,
+                          onTabChange: (index) {
+                            setState(() {
+                              _selectedIndex = index;
+                            });
+                          },
+                        ),
+                      )),),
                 drawer: const Menu(),
                 body: _views.elementAt(_selectedIndex),
               ));

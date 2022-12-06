@@ -13,7 +13,7 @@ class _ServiciosState extends State<Servicios> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const NavBar(title: "Servicios",),
+      appBar: NavBar(title: "Servicios",),
       drawer: const Menu(),
       body: ListView(
         children: [

@@ -9,7 +9,7 @@ const Info({ Key? key }) : super(key: key);
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: const NavBar(title: "Acerca de",),
+      appBar: NavBar(title: "Acerca de",),
       drawer: const Menu(),
       body: ListView(children: [
         Text("Info")
