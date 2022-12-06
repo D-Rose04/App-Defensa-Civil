@@ -111,7 +111,7 @@ class MySearchDelegate extends SearchDelegate {
     List<Entidad> suggestions = data.where((element) {
       final result = element.getData();
       final input = query.toLowerCase();
-      return result.edificio.toLowerCase().contains(input);
+      return result.edificio.toLowerCase().contains(input) || result.ciudad.toLowerCase().contains(input);
     }).toList();
 
     return ListView.builder(
