@@ -1,12 +1,13 @@
+import 'package:defensa_civil/layout/navbar.dart';
 import 'package:defensa_civil/views/mapa.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../layout/navBar.dart';
-
 class AlbergueDetalles extends StatefulWidget {
-  const AlbergueDetalles({Key? key, this.albergueActual}) : super(key: key);
+  const AlbergueDetalles({Key? key, this.albergueActual, this.searchResult = false})
+      : super(key: key);
   final albergueActual;
+  final searchResult;
   @override
   _AlbergueDetallesState createState() => _AlbergueDetallesState();
 }
@@ -14,7 +15,20 @@ class AlbergueDetalles extends StatefulWidget {
 class _AlbergueDetallesState extends State<AlbergueDetalles> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Scaffold(
+      appBar: widget.searchResult
+          ? null
+          : NavBar(title: widget.albergueActual.edificio),
+      floatingActionButton: FloatingActionButton(
+        tooltip: "Llamar",
+        splashColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
+        onPressed: () {
+          call();
+        },
+        child: const Icon(Icons.phone_in_talk_outlined),
+      ),
+      body: ListView(
         children: [
           Container(
               padding: const EdgeInsets.all(5),
@@ -133,7 +147,8 @@ class _AlbergueDetallesState extends State<AlbergueDetalles> {
                 )
               ]))
         ],
-      );
+      ),
+    );
   }
 
   Future call() async {

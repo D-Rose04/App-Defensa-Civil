@@ -102,6 +102,7 @@ class MySearchDelegate extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     return AlbergueDetalles(
       albergueActual: _selected,
+      searchResult: true,
     );
   }
 
