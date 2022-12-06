@@ -49,7 +49,7 @@ class _ServiciosState extends State<Servicios> with TickerProviderStateMixin {
           return DefaultTabController(
             length: 2,
             child: Scaffold(
-              appBar: const NavBar(title: "Servicios"),
+              appBar: NavBar(title: "Servicios"),
               drawer: const Menu(),
               body: TabBarView(
                 physics: const BouncingScrollPhysics(),

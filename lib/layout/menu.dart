@@ -16,23 +16,17 @@ class Menu extends StatelessWidget {
             accountEmail: Text("809-472-8614 / 8617"),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(
-                  "https://hoy.com.do/wp-content/uploads/2022/04/Defensa-CIvil.jpeg",
-                ),
+                image: AssetImage("images/menu-background.jpeg",),
                 fit: BoxFit.fill,
               ),
             ),
             otherAccountsPictures: [
               CircleAvatar(
                 backgroundColor: Colors.white,
-                backgroundImage: NetworkImage(
-                    "https://defensacivil.gob.do/images/Log%20DC%20Nueva%20versio%CC%81n5-01.png"),
-              ),
+                backgroundImage: AssetImage("images/logo.png"),),
               CircleAvatar(
                 backgroundColor: Colors.white,
-                backgroundImage: NetworkImage(
-                    "https://images.visitarepublicadominicana.org/escudo-de-republica-dominicana.jpg"),
-              ),
+                backgroundImage: AssetImage("images/escudo-de-republica-dominicana.jpg"),),
             ]),
         ListTile(
           leading: Icon(

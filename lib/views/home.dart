@@ -4,8 +4,6 @@ import 'package:defensa_civil/layout/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-
-
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -23,16 +21,13 @@ class _HomeState extends State<Home> {
     'https://defensacivil.gob.do/media/zoo/images/x27_ea05a2db65ac1979b1bc447f3914d270.jpeg'
   ];
 
-
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: const NavBar(
-        title: "Home",
-      ),
-      drawer: const Menu(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        appBar: NavBar(
+          title: "Home",
+        ),
+        drawer: const Menu(),
+        body: ListView(
           children: [
             CarouselSlider.builder(
               options: CarouselOptions(
@@ -49,11 +44,13 @@ class _HomeState extends State<Home> {
                 return buildImage(imgL, index);
               }),
             ),
-            const SizedBox(height:  32,),
+            const SizedBox(
+              height: 32,
+            ),
             buildIndicator(),
           ],
         ),
-      ));
+      );
 
   Widget buildImage(String imgL, int index) => Container(
         margin: const EdgeInsets.symmetric(horizontal: 12),
@@ -63,13 +60,10 @@ class _HomeState extends State<Home> {
           fit: BoxFit.cover,
         ),
       );
-  
+
   Widget buildIndicator() => AnimatedSmoothIndicator(
-    activeIndex: activeIndex,
-    count:  imgList.length,
-    effect: WormEffect(
-      activeDotColor: Colors.orange.shade900,
-      dotColor: Colors.black12
-    )
-  );
+      activeIndex: activeIndex,
+      count: imgList.length,
+      effect: WormEffect(
+          activeDotColor: Colors.orange.shade900, dotColor: Colors.black12));
 }

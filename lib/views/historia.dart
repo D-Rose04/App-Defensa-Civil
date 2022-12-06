@@ -11,15 +11,15 @@ class Historia extends StatelessWidget {
   @override
   // ignore: prefer_const_constructors
   Widget build(BuildContext context) => Scaffold(
-        appBar: const NavBar(
+        appBar: NavBar(
           title: "Historia",
         ),
         drawer: const Menu(),
         body: ListView(children: [
           Container(
             margin: const EdgeInsets.all(2.0),
-            child: Image.network(
-              "https://defensacivil.gob.do/images/slide/2021/logoNuevoDefensa.png",
+            child: Image.asset(
+              "images/logo.png",
               width: 180,
               height: 180,
             ),

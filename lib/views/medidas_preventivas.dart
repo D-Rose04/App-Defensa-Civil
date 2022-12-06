@@ -13,7 +13,7 @@ class _MedidasPreventivasState extends State<MedidasPreventivas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const NavBar(title: "Medidas Preventivas",),
+      appBar: NavBar(title: "Medidas Preventivas",),
       drawer: const Menu(),
       body: ListView(children: [
         Text("Medidas preventivas")
