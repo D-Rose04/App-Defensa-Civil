@@ -2,7 +2,7 @@ import 'package:defensa_civil/views/Historia.dart';
 import 'package:defensa_civil/views/Home.dart';
 import 'package:defensa_civil/views/Info.dart';
 import 'package:defensa_civil/views/Noticias.dart';
-import 'package:defensa_civil/views/Servicios.dart';
+import 'package:defensa_civil/views/servicio/servicios.dart';
 import 'package:defensa_civil/views/albergue/albergues.dart';
 import 'package:defensa_civil/views/video/Videos.dart';
 import 'package:defensa_civil/views/Voluntario.dart';
@@ -10,6 +10,7 @@ import 'package:defensa_civil/views/medidas_preventivas.dart';
 import 'package:defensa_civil/views/miembros.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   GoRouter _router = GoRouter(routes: <GoRoute>[
     GoRoute(path: '/', builder: (context, state) => const Home()),
     GoRoute(path: '/historia', builder: (context, state) => const Historia()),
-    GoRoute(path: '/servicios', builder: (context, state) => const Servicios()),
+    GoRoute(path: '/servicios', builder: (context, state) => Servicios()),
     GoRoute(path: '/noticias', builder: (context, state) => Noticias()),
     GoRoute(path: '/videos', builder: (context, state) => Videos()),
     GoRoute(path: '/albergues', builder: (context, state) => Albergues()),
