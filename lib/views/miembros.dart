@@ -44,6 +44,7 @@ class _MiembrosState extends State<Miembros> {
                           child: ListTile(
                             key: Key("$index"),
                             leading: CircleAvatar(
+                              maxRadius: 59,
                               backgroundImage: NetworkImage(miembroactual.foto),
                             ),
                             title: Text(miembroactual.nombre),
