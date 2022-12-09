@@ -44,9 +44,13 @@ class _MiembrosState extends State<Miembros> {
                             child: Container(
                               child: Column(children: [
                                 CircleAvatar(
-                                  radius: 90,
-                                  backgroundImage:
-                                      NetworkImage(miembroactual.foto),
+                                  radius: 100,
+                                  backgroundColor: Colors.orange.shade900,
+                                  child: CircleAvatar(
+                                    radius: 96,
+                                    backgroundImage:
+                                        NetworkImage(miembroactual.foto),
+                                  ),
                                 ),
                                 Container(
                                   margin: EdgeInsets.all(31),
