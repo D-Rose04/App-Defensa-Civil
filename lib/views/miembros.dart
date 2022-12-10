@@ -40,24 +40,35 @@ class _MiembrosState extends State<Miembros> {
                         MiembrosModel miembroactual =
                             snapshot.data![index].getData();
                         return Container(
-                          margin: const EdgeInsets.only(top: 10),
-                          child: ListTile(
-                            key: Key("$index"),
-                            leading: CircleAvatar(
-                              maxRadius: 59,
-                              backgroundImage: NetworkImage(miembroactual.foto),
-                            ),
-                            title: Text(miembroactual.nombre,
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall),
-                            subtitle: Text(
-                              miembroactual.cargo,
-                              style: TextStyle(
-                                  color: Colors.orange.shade900,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        );
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Container(
+                              child: Column(children: [
+                                CircleAvatar(
+                                  radius: 116,
+                                  backgroundColor: Colors.orange.shade900,
+                                  child: CircleAvatar(
+                                    radius: 113.5,
+                                    backgroundImage:
+                                        NetworkImage(miembroactual.foto),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(31),
+                                  child: Column(children: [
+                                    Text(miembroactual.cargo,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineSmall),
+                                    Text(
+                                      miembroactual.nombre,
+                                      style: TextStyle(
+                                          color: Colors.orange.shade900,
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ]),
+                                )
+                              ]),
+                            ));
                       }),
                     )
                   // ignore: prefer_const_constructors
