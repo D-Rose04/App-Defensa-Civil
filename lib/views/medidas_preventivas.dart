@@ -1,4 +1,5 @@
 import 'package:defensa_civil/layout/navbar.dart';
+import 'package:defensa_civil/views/medidas_preventivas_detalle.dart';
 import 'package:flutter/material.dart';
 import '../layout/menu.dart';
 import '../models/entidad.dart';
@@ -38,7 +39,29 @@ class _MedidasPreventivasState extends State<MedidasPreventivas> {
                           childCount: snapshot.data!.length, (context, index) {
                         MedidasPreventivasModel medidaactual =
                             snapshot.data![index].getData();
-                        return Container();
+                        return Container(
+                          child: Container(
+                            child: Card(
+                                margin: const EdgeInsets.all(10),
+                                elevation: 10,
+                                child: InkWell(
+                                  splashColor: Theme.of(context).primaryColor,
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                MedidasPreventivasDetalle(
+                                                  medidas_preventivas:
+                                                      medidaactual,
+                                                )));
+                                  },
+                                  child: Container(
+                                    child: Text(medidaactual.titulo),
+                                  ),
+                                )),
+                          ),
+                        );
                       }),
                     )
                   // ignore: prefer_const_constructors
