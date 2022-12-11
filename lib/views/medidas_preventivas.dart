@@ -41,7 +41,9 @@ class _MedidasPreventivasState extends State<MedidasPreventivas> {
                             snapshot.data![index].getData();
                         return Container(
                           child: Container(
+                            height: 87,
                             child: Card(
+                                shadowColor: Colors.orange.shade900,
                                 margin: const EdgeInsets.all(10),
                                 elevation: 10,
                                 child: InkWell(
@@ -57,7 +59,14 @@ class _MedidasPreventivasState extends State<MedidasPreventivas> {
                                                 )));
                                   },
                                   child: Container(
-                                    child: Text(medidaactual.titulo),
+                                    padding: EdgeInsets.only(top: 20),
+                                    child: Text(
+                                      medidaactual.titulo,
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall,
+                                    ),
                                   ),
                                 )),
                           ),
