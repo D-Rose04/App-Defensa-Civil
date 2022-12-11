@@ -6,7 +6,6 @@ import 'package:defensa_civil/models/response_model.dart';
 
 class MedidasPreventivasParser implements Parser {
   final String tipo;
-
   MedidasPreventivasParser({required this.tipo});
 
   @override

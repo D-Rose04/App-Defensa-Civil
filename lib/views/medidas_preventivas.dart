@@ -1,13 +1,13 @@
+import 'package:defensa_civil/layout/navbar.dart';
 import 'package:flutter/material.dart';
 import '../layout/menu.dart';
-import '../layout/navBar.dart';
-import '../models/Entidad.dart';
+import '../models/entidad.dart';
 import '../models/medidas_preventivas_models.dart';
 import '../utils/http_fetcher.dart';
 
 class MedidasPreventivas extends StatefulWidget {
   MedidasPreventivas({Key? key}) : super(key: key);
-  final fetch = HttpFetcher(
+  final Fetch = HttpFetcher(
       url: "https://adamix.net/defensa_civil/def/medidas_preventivas.php",
       tipo: "medidaspreventivas");
   @override
@@ -20,7 +20,7 @@ class _MedidasPreventivasState extends State<MedidasPreventivas> {
   @override
   void initState() {
     super.initState();
-    data = widget.fetch.fetchData();
+    data = widget.Fetch.fetchData();
   }
 
   @override

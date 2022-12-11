@@ -5,29 +5,27 @@ class MedidasPreventivasModel implements Entidad {
   final String titulo;
   final String descripcion;
   final String foto;
-  final String https;
 
-  MedidasPreventivasModel(
-      {required this.id,
-      required this.titulo,
-      required this.descripcion,
-      required this.foto,
-      required this.https});
+  MedidasPreventivasModel({
+    required this.id,
+    required this.titulo,
+    required this.descripcion,
+    required this.foto,
+  });
 
   factory MedidasPreventivasModel.fromJson(Map<String, dynamic> json) {
     return MedidasPreventivasModel(
         id: json["id"],
         titulo: json["titulo"],
         descripcion: json["descripcion"],
-        foto: json["foto"],
-        https: json["https"]);
+        foto: json["foto"]);
   }
 
   @override
   getData() => MedidasPreventivasModel(
-      id: id,
-      titulo: titulo,
-      descripcion: descripcion,
-      foto: foto,
-      https: https);
+        id: id,
+        titulo: titulo,
+        descripcion: descripcion,
+        foto: foto,
+      );
 }
