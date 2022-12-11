@@ -1,7 +1,6 @@
 import 'package:defensa_civil/layout/navbar.dart';
 import 'package:defensa_civil/models/miembros_model.dart';
 import 'package:flutter/material.dart';
-
 import '../layout/menu.dart';
 import '../models/entidad.dart';
 import '../utils/http_fetcher.dart';
