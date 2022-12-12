@@ -18,21 +18,33 @@ class _NoticiasDetalleState extends State<NoticiasDetalle> {
       body: ListView(children: [
         Stack(children: [
           Container(
-            child: Image(image: NetworkImage(widget.noticia.foto),fit: BoxFit.cover,),
+            child: Image(
+              image: NetworkImage(widget.noticia.foto),
+              fit: BoxFit.cover,
+            ),
             height: 350,
           ),
-          AppBar(backgroundColor: Color.fromARGB(0, 255, 255, 255),),
+          AppBar(
+            backgroundColor: Color.fromARGB(0, 255, 255, 255),
+          ),
         ]),
         Container(
-          padding: const EdgeInsets.only(top: 20,right: 20,left: 20,bottom: 5),
+          padding:
+              const EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 5),
           margin: const EdgeInsets.only(top: 10),
-          child: Text(widget.noticia.titulo,textAlign: TextAlign.center,style: Theme.of(context).textTheme.headlineSmall,),
+          child: Text(
+            widget.noticia.titulo,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(10),
-          child: Text(widget.noticia.contenido,textAlign: TextAlign.justify,),
+          child: Text(
+            widget.noticia.contenido,
+            textAlign: TextAlign.justify,
+          ),
         )
-        
       ]),
     );
   }

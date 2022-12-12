@@ -3,7 +3,6 @@ import 'package:defensa_civil/views/noticias_detalle.dart';
 import 'package:flutter/material.dart';
 import 'package:progressive_image/progressive_image.dart';
 
-
 import '../layout/menu.dart';
 import '../layout/navbar.dart';
 import '../models/entidad.dart';
@@ -48,13 +47,12 @@ class _NoticiasState extends State<Noticias> {
                         elevation: 10,
                         child: InkWell(
                           splashColor: Theme.of(context).primaryColor,
-                          onTap: () { 
+                          onTap: () {
                             Navigator.push(
-                              context, 
-                              MaterialPageRoute(builder: 
-                                (context)=> NoticiasDetalle(noticia: noticiaActual)
-                              )
-                            );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => NoticiasDetalle(
+                                        noticia: noticiaActual)));
                           },
                           child: Container(
                               padding:
@@ -69,7 +67,9 @@ class _NoticiasState extends State<Noticias> {
                                         right: 5, bottom: 15, top: 20, left: 5),
                                     child: Text(
                                       noticiaActual.titulo,
-                                      style:Theme.of(context).textTheme.headlineSmall,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall,
                                     ),
                                   ),
                                   Container(
@@ -78,11 +78,14 @@ class _NoticiasState extends State<Noticias> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(5),
                                       child: ProgressiveImage(
-                                        placeholder: const AssetImage("images/placeholder.png"),
-                                        thumbnail: NetworkImage(noticiaActual.foto),
+                                        placeholder: const AssetImage(
+                                            "images/placeholder.png"),
+                                        thumbnail:
+                                            NetworkImage(noticiaActual.foto),
                                         image: NetworkImage(noticiaActual.foto),
                                         height: 250,
-                                        width: MediaQuery.of(context).size.width,
+                                        width:
+                                            MediaQuery.of(context).size.width,
                                       ),
                                     ),
                                   ),
@@ -99,10 +102,13 @@ class _NoticiasState extends State<Noticias> {
                                     ),
                                   ),
                                   Container(
-                                    margin: const EdgeInsets.only(right: 10),
-                                    padding: const EdgeInsets.only(right: 10),
-                                    child: Text(noticiaActual.fecha, style: const TextStyle(fontSize: 10,color: Colors.grey),)
-                                  )
+                                      margin: const EdgeInsets.only(right: 10),
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: Text(
+                                        noticiaActual.fecha,
+                                        style: const TextStyle(
+                                            fontSize: 10, color: Colors.grey),
+                                      ))
                                 ],
                               )),
                         ),
