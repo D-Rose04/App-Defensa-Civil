@@ -117,15 +117,6 @@ class Menu extends StatelessWidget {
           },
         ),
         ListTile(
-          leading:
-              Icon(Icons.info, color: Theme.of(context).secondaryHeaderColor),
-          title: const Text("Acerca de"),
-          onTap: () {
-            GoRouter.of(context).go('/info');
-            Navigator.pop(context);
-          },
-        ),
-        ListTile(
           leading: Icon(
             Icons.camera_outdoor_outlined,
             color: Theme.of(context).secondaryHeaderColor,
@@ -133,6 +124,15 @@ class Menu extends StatelessWidget {
           title: const Text("Reportar una situación"),
           onTap: () {
             GoRouter.of(context).go('/reporta');
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          leading:
+              Icon(Icons.info, color: Theme.of(context).secondaryHeaderColor),
+          title: const Text("Acerca de"),
+          onTap: () {
+            GoRouter.of(context).go('/info');
             Navigator.pop(context);
           },
         )
