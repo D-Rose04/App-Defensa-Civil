@@ -1,10 +1,18 @@
+import 'package:defensa_civil/models/usuarios_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:go_router/go_router.dart';
 
-class Menu extends StatelessWidget {
+class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
+  static bool logged = false;
+  static UsuarioModel? user;
 
+  @override
+  _MenuState createState() => _MenuState();
+}
+
+class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -33,6 +41,19 @@ class Menu extends StatelessWidget {
                     AssetImage("images/escudo-de-republica-dominicana.jpg"),
               ),
             ]),
+        Menu.logged
+            ? ListTile(
+                leading: Icon(
+                  Icons.camera_outdoor_outlined,
+                  color: Theme.of(context).secondaryHeaderColor,
+                ),
+                title: const Text("Reportar una situación"),
+                onTap: () {
+                  GoRouter.of(context).go('/reporta');
+                  Navigator.pop(context);
+                },
+              )
+            : Text(""),
         ListTile(
           leading: Icon(
             Icons.home,
@@ -40,7 +61,7 @@ class Menu extends StatelessWidget {
           ),
           title: Text("Inicio"),
           onTap: () {
-            GoRouter.of(context).go('/');
+            GoRouter.of(context).go('/inicio');
             Navigator.pop(context);
           },
         ),
@@ -108,26 +129,6 @@ class Menu extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: Icon(Icons.volunteer_activism_rounded,
-              color: Theme.of(context).secondaryHeaderColor),
-          title: const Text("Quiero ser voluntario"),
-          onTap: () {
-            GoRouter.of(context).go('/voluntario');
-            Navigator.pop(context);
-          },
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.camera_outdoor_outlined,
-            color: Theme.of(context).secondaryHeaderColor,
-          ),
-          title: const Text("Reportar una situación"),
-          onTap: () {
-            GoRouter.of(context).go('/reporta');
-            Navigator.pop(context);
-          },
-        ),
-        ListTile(
           leading:
               Icon(Icons.info, color: Theme.of(context).secondaryHeaderColor),
           title: const Text("Acerca de"),
@@ -135,7 +136,34 @@ class Menu extends StatelessWidget {
             GoRouter.of(context).go('/info');
             Navigator.pop(context);
           },
-        )
+        ),
+        Menu.logged
+            ? ListTile(
+                tileColor: Colors.blue.shade900,
+                iconColor: Colors.orange.shade900,
+                textColor: Colors.white,
+                leading: Icon(Icons.logout_rounded),
+                title: Text("Cerrar sesion"),
+                onTap: () {
+                  setState(() {
+                    Menu.logged = false;
+                    Menu.user = null;
+                    GoRouter.of(context).go('/inicio_sesion');
+                    Navigator.pop(context);
+                  });
+                },
+              )
+            : ListTile(
+                tileColor: Colors.blue.shade900,
+                iconColor: Colors.orange.shade900,
+                textColor: Colors.white,
+                leading: Icon(Icons.login_rounded),
+                title: Text("Iniciar sesion"),
+                onTap: () {
+                  GoRouter.of(context).go('/inicio_sesion');
+                  Navigator.pop(context);
+                },
+              )
       ]),
     );
   }

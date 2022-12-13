@@ -37,7 +37,7 @@ class _ServiciosState extends State<Servicios> with TickerProviderStateMixin {
           return Scaffold(
               backgroundColor: Colors.blue.shade900,
               appBar: NavBar(title: "Servicios"),
-              drawer: const Menu(),
+              drawer: Menu(),
               body: ListaServicios(data: data));
         });
   }

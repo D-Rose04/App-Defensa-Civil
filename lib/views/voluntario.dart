@@ -1,3 +1,4 @@
+import 'package:defensa_civil/models/response_model.dart';
 import 'package:flutter/material.dart';
 import '../layout/menu.dart';
 import '../layout/navbar.dart';
@@ -16,7 +17,7 @@ class _VoluntarioState extends State<Voluntario> {
   final inputControllerNombre = TextEditingController();
   final inputControllerApellido = TextEditingController();
   final inputControllerClave = TextEditingController();
-  final inputControllerEmail = TextEditingController();
+  final inputControllerCorreo = TextEditingController();
   final inputControllerTelefono = TextEditingController();
 
   @override
@@ -29,6 +30,7 @@ class _VoluntarioState extends State<Voluntario> {
       "Ingrese su correo",
       "Ingrese su telefono",
     ];
+
     myInputDecoration(number) => InputDecoration(
         hintText: placeholder[number],
         border: InputBorder.none,
@@ -50,7 +52,7 @@ class _VoluntarioState extends State<Voluntario> {
       appBar: NavBar(
         title: "Voluntariado",
       ),
-      drawer: const Menu(),
+      drawer: Menu(),
       backgroundColor: Colors.blue.shade900,
       body: ListView(children: [
         Container(
@@ -103,7 +105,7 @@ class _VoluntarioState extends State<Voluntario> {
                   Container(
                     padding: EdgeInsets.all(5),
                     child: TextFormField(
-                      // obscureText: true,
+                      obscureText: true,
                       controller: inputControllerClave,
                       decoration: myInputDecoration(3),
                       validator: (value) {
@@ -116,7 +118,7 @@ class _VoluntarioState extends State<Voluntario> {
                   Container(
                     padding: EdgeInsets.all(5),
                     child: TextFormField(
-                      controller: inputControllerEmail,
+                      controller: inputControllerCorreo,
                       decoration: myInputDecoration(4),
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -129,12 +131,11 @@ class _VoluntarioState extends State<Voluntario> {
                     padding: EdgeInsets.all(5),
                     child: TextFormField(
                       controller: inputControllerTelefono,
-                      decoration: myInputDecoration(4),
+                      decoration: myInputDecoration(5),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Este campo debe ser completado';
                         }
-                        return '';
                       },
                     ),
                   ),
@@ -158,27 +159,24 @@ class _VoluntarioState extends State<Voluntario> {
                                 'POST',
                                 Uri.parse(
                                     'https://adamix.net/defensa_civil/def/registro.php'));
-
                             // adds all the field in form data format
                             request.fields.addAll({
-                              'cedula': "",
-                              'nombre': "",
-                              'apellido': "",
-                              'clave': "",
-                              'correo': "",
-                              'telefono': ""
+                              'cedula': inputControllerCedula.text,
+                              'nombre': inputControllerNombre.text,
+                              'apellido': inputControllerApellido.text,
+                              'clave': inputControllerClave.text,
+                              'correo': inputControllerCorreo.text,
+                              'telefono': inputControllerTelefono.text,
                             });
 
                             // response result
                             http.StreamedResponse response =
                                 await request.send();
-                            print(response.reasonPhrase);
+                            print(response.headers);
                             if (response.statusCode == 200) {
-                              print(await response.stream.bytesToString());
-                              request.fields
-                                  .forEach((key, value) => print(value));
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
+                                      backgroundColor: Colors.orange.shade900,
                                       content: Text(
                                           "Su registro ha sido satisfactorio")));
                             } else {
@@ -190,7 +188,6 @@ class _VoluntarioState extends State<Voluntario> {
                           }
                         },
                         child: const Text("Enviar"),
-                        
                       ))
                 ],
               )),

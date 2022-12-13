@@ -12,12 +12,12 @@ class MiembrosModel implements Entidad {
       required this.nombre,
       required this.cargo});
 
-  factory MiembrosModel.fromJson(Map<String, dynamic> Json) {
+  factory MiembrosModel.fromJson(Map<String, dynamic> json) {
     return MiembrosModel(
-        id: Json["id"],
-        foto: Json["foto"],
-        nombre: Json["nombre"],
-        cargo: Json["cargo"]);
+        id: json["id"],
+        foto: json["foto"],
+        nombre: json["nombre"],
+        cargo: json["cargo"]);
   }
   @override
   getData() => MiembrosModel(id: id, foto: foto, nombre: nombre, cargo: cargo);

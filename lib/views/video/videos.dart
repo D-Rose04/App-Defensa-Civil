@@ -33,7 +33,7 @@ class _VideosState extends State<Videos> {
           return Scaffold(
             backgroundColor: Colors.blue.shade900,
             appBar: NavBar(title: "Videos"),
-            drawer: const Menu(),
+            drawer: Menu(),
             body: CustomScrollView(slivers: [
               snapshot.hasData
                   ? SliverList(

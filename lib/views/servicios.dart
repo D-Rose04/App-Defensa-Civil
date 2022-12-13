@@ -14,7 +14,7 @@ class _ServiciosState extends State<Servicios> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NavBar(title: "Servicios",),
-      drawer: const Menu(),
+      drawer: Menu(),
       body: ListView(
         children: [
           Text("Servicios")

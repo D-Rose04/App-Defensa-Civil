@@ -96,7 +96,7 @@ class _AlberguesState extends State<Albergues> with TickerProviderStateMixin {
                           },
                         ),
                       )),),
-                drawer: const Menu(),
+                drawer: Menu(),
                 body: _views.elementAt(_selectedIndex),
               ));
         });
