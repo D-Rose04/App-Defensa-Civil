@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp.router(c
       routerConfig: _router,
       theme: ThemeData(
           primaryColor: Colors.orange.shade900,
@@ -50,7 +50,9 @@ class MyApp extends StatelessWidget {
               headlineSmall: TextStyle(
                   color: Colors.blue.shade900,
                   fontSize: 18,
-                  fontWeight: FontWeight.bold))),
+                  fontWeight: FontWeight.bold),
+              displaySmall: TextStyle(color: Colors.blue.shade900)
+            )),
     );
   }
 }
