@@ -1,6 +1,6 @@
-import 'package:defensa_civil/models/miembros_model.dart';
 import 'package:defensa_civil/models/parser.dart';
 import 'package:defensa_civil/utils/parser/albergue_parser.dart';
+import 'package:defensa_civil/utils/parser/medidaspreventivas_parser.dart';
 import 'package:defensa_civil/utils/parser/miembros_parser.dart';
 import 'package:defensa_civil/utils/parser/noticia_parser.dart';
 import 'package:defensa_civil/utils/parser/servicio_parser.dart';
@@ -26,8 +26,12 @@ class ParserManager {
       parser = MiembrosParser(tipo: tipo);
     }
 
-    if(tipo == "servicios"){
+    if (tipo == "servicios") {
       parser = ServicioParser();
+    }
+
+    if (tipo == "medidaspreventivas") {
+      parser = MedidasPreventivasParser(tipo: tipo);
     }
 
     return parser;

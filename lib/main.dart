@@ -11,7 +11,6 @@ import 'package:defensa_civil/views/miembros.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -28,8 +27,7 @@ class MyApp extends StatelessWidget {
     GoRoute(path: '/videos', builder: (context, state) => Videos()),
     GoRoute(path: '/albergues', builder: (context, state) => Albergues()),
     GoRoute(
-        path: '/medidas',
-        builder: (context, state) => const MedidasPreventivas()),
+        path: '/medidas', builder: (context, state) => MedidasPreventivas()),
     GoRoute(path: '/miembros', builder: (context, state) => Miembros()),
     GoRoute(
         path: '/voluntario', builder: (context, state) => const Voluntario()),
@@ -44,7 +42,8 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.orange.shade900,
           secondaryHeaderColor: Colors.blue.shade900,
           textTheme: TextTheme(
-              labelLarge: const TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
+              labelLarge: const TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.normal),
               bodyLarge: TextStyle(color: Colors.blue.shade900),
               labelMedium: TextStyle(color: Colors.orange.shade900),
               headlineSmall: TextStyle(

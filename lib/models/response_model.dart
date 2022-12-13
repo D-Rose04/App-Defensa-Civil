@@ -1,5 +1,6 @@
 import 'package:defensa_civil/models/albergues_model.dart';
 import 'package:defensa_civil/models/entidad.dart';
+import 'package:defensa_civil/models/medidas_preventivas_models.dart';
 import 'package:defensa_civil/models/miembros_model.dart';
 import 'package:defensa_civil/models/noticias_model.dart';
 import 'package:defensa_civil/models/servicios_model.dart';
@@ -36,6 +37,10 @@ class ResponseModel {
 
           if (tipo == "servicios") {
             return ServiciosModel.fromJson(d);
+          }
+
+          if (tipo == "medidaspreventivas") {
+            return MedidasPreventivasModel.fromJson(d);
           }
         })),
         mensaje: json["mensaje"]);
