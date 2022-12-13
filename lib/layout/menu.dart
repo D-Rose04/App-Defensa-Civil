@@ -61,7 +61,7 @@ class _MenuState extends State<Menu> {
           ),
           title: Text("Inicio"),
           onTap: () {
-            GoRouter.of(context).go('/');
+            GoRouter.of(context).go('/inicio');
             Navigator.pop(context);
           },
         ),

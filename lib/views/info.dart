@@ -187,7 +187,7 @@ class Info extends StatelessWidget {
                   height: 250,
                   padding: const EdgeInsets.all(20.0),
                   child: CircleAvatar(
-                    backgroundImage: AssetImage('images/placeholder.png'),
+                    backgroundImage: AssetImage('images/johan1.jpg'),
                     radius: 40,
                   ),
                 ),
