@@ -15,7 +15,7 @@ class Historia extends StatelessWidget {
         appBar: NavBar(
           title: "Historia",
         ),
-        drawer: const Menu(),
+        drawer: Menu(),
         body: ListView(children: [
           Container(
             margin: const EdgeInsets.all(2.0),

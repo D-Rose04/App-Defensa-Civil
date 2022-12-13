@@ -2,6 +2,7 @@ import 'package:defensa_civil/views/Historia.dart';
 import 'package:defensa_civil/views/Home.dart';
 import 'package:defensa_civil/views/Info.dart';
 import 'package:defensa_civil/views/Noticias.dart';
+import 'package:defensa_civil/views/iniciar_sesion.dart';
 import 'package:defensa_civil/views/reporta.dart';
 import 'package:defensa_civil/views/servicio/servicios.dart';
 import 'package:defensa_civil/views/albergue/albergues.dart';
@@ -27,13 +28,12 @@ class MyApp extends StatelessWidget {
     GoRoute(path: '/noticias', builder: (context, state) => Noticias()),
     GoRoute(path: '/videos', builder: (context, state) => Videos()),
     GoRoute(path: '/albergues', builder: (context, state) => Albergues()),
-    GoRoute(
-        path: '/medidas', builder: (context, state) => MedidasPreventivas()),
+    GoRoute(path: '/medidas', builder: (context, state) => MedidasPreventivas()),
     GoRoute(path: '/miembros', builder: (context, state) => Miembros()),
-    GoRoute(
-        path: '/voluntario', builder: (context, state) => const Voluntario()),
+    GoRoute(path: '/voluntario', builder: (context, state) => const Voluntario()),
     GoRoute(path: '/info', builder: (context, state) => const Info()),
-    GoRoute(path: '/reporta', builder: ((context, state) => const Reporta()))
+    GoRoute(path: '/reporta', builder: ((context, state) => const Reporta())),
+    GoRoute(path: '/inicio_sesion', builder: ((context, state) => InicioSesion())),
   ]);
 
   @override

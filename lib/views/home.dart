@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
         appBar: NavBar(
           title: "Inicio",
         ),
-        drawer: const Menu(),
+        drawer: Menu(),
         body: ListView(
           children: [
             Container(

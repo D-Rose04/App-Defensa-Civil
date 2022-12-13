@@ -3,32 +3,25 @@ import '../layout/menu.dart';
 import '../layout/navbar.dart';
 import 'package:http/http.dart' as http;
 
-class Voluntario extends StatefulWidget {
-  const Voluntario({Key? key}) : super(key: key);
+class InicioSesion extends StatefulWidget {
+  const InicioSesion({Key? key}) : super(key: key);
 
   @override
-  _VoluntarioState createState() => _VoluntarioState();
+  _InicioSesionState createState() => _InicioSesionState();
 }
 
-class _VoluntarioState extends State<Voluntario> {
+class _InicioSesionState extends State<InicioSesion> {
   final _formKey = GlobalKey<FormState>();
   final inputControllerCedula = TextEditingController();
-  final inputControllerNombre = TextEditingController();
-  final inputControllerApellido = TextEditingController();
   final inputControllerClave = TextEditingController();
-  final inputControllerEmail = TextEditingController();
-  final inputControllerTelefono = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final List<String> placeholder = [
       "Ingrese su cedula",
-      "Ingrese su nombre",
-      "Ingrese su apellido",
       "Ingrese su contraseña",
-      "Ingrese su correo",
-      "Ingrese su telefono",
     ];
+
     myInputDecoration(number) => InputDecoration(
         hintText: placeholder[number],
         border: InputBorder.none,
@@ -79,62 +72,13 @@ class _VoluntarioState extends State<Voluntario> {
                   Container(
                     padding: EdgeInsets.all(5),
                     child: TextFormField(
-                      controller: inputControllerNombre,
+                      obscureText: true,
+                      controller: inputControllerClave,
                       decoration: myInputDecoration(1),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Este campo debe ser completado';
                         }
-                      },
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    child: TextFormField(
-                      controller: inputControllerApellido,
-                      decoration: myInputDecoration(2),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Este campo debe ser completado';
-                        }
-                      },
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    child: TextFormField(
-                      // obscureText: true,
-                      controller: inputControllerClave,
-                      decoration: myInputDecoration(3),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Este campo debe ser completado';
-                        }
-                      },
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    child: TextFormField(
-                      controller: inputControllerEmail,
-                      decoration: myInputDecoration(4),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Este campo debe ser completado';
-                        }
-                      },
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    child: TextFormField(
-                      controller: inputControllerTelefono,
-                      decoration: myInputDecoration(4),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Este campo debe ser completado';
-                        }
-                        return '';
                       },
                     ),
                   ),
@@ -157,16 +101,13 @@ class _VoluntarioState extends State<Voluntario> {
                             var request = http.MultipartRequest(
                                 'POST',
                                 Uri.parse(
-                                    'https://adamix.net/defensa_civil/def/registro.php'));
+                                    'https://adamix.net/defensa_civil/def/iniciar_sesion.php'));
 
+                            
                             // adds all the field in form data format
                             request.fields.addAll({
-                              'cedula': "",
-                              'nombre': "",
-                              'apellido': "",
-                              'clave': "",
-                              'correo': "",
-                              'telefono': ""
+                              'cedula': inputControllerCedula.text,
+                              'clave': inputControllerClave.text,
                             });
 
                             // response result
@@ -190,7 +131,6 @@ class _VoluntarioState extends State<Voluntario> {
                           }
                         },
                         child: const Text("Enviar"),
-                        
                       ))
                 ],
               )),

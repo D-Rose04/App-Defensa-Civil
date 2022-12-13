@@ -16,7 +16,7 @@ class Info extends StatelessWidget {
         appBar: NavBar(
           title: "Acerca de",
         ),
-        drawer: const Menu(),
+        drawer: Menu(),
         body: SingleChildScrollView(
             child: Center(
           child: Column(

@@ -16,7 +16,7 @@ class _ReportaState extends State<Reporta> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NavBar(title: "Reportar situación"),
-      drawer: const Menu(),
+      drawer: Menu(),
       body: ListView(children: [Text("Reporta")]),
     );
   }
