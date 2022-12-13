@@ -2,6 +2,7 @@ import 'package:defensa_civil/views/Historia.dart';
 import 'package:defensa_civil/views/Home.dart';
 import 'package:defensa_civil/views/Info.dart';
 import 'package:defensa_civil/views/Noticias.dart';
+import 'package:defensa_civil/views/reporta.dart';
 import 'package:defensa_civil/views/servicio/servicios.dart';
 import 'package:defensa_civil/views/albergue/albergues.dart';
 import 'package:defensa_civil/views/video/Videos.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
     GoRoute(
         path: '/voluntario', builder: (context, state) => const Voluntario()),
     GoRoute(path: '/info', builder: (context, state) => const Info()),
+    GoRoute(path: '/reporta', builder: ((context, state) => const Reporta()))
   ]);
 
   @override

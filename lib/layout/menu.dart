@@ -11,22 +11,27 @@ class Menu extends StatelessWidget {
       // ignore: prefer_const_literals_to_create_immutables
       child: ListView(children: [
         const UserAccountsDrawerHeader(
-          margin: EdgeInsets.zero,
+            margin: EdgeInsets.zero,
             accountName: Text("Defensa Civil"),
             accountEmail: Text("809-472-8614 / 8617"),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("images/menu-background.jpeg",),
+                image: AssetImage(
+                  "images/menu-background.jpeg",
+                ),
                 fit: BoxFit.fill,
               ),
             ),
             otherAccountsPictures: [
               CircleAvatar(
                 backgroundColor: Colors.white,
-                backgroundImage: AssetImage("images/logo.png"),),
+                backgroundImage: AssetImage("images/logo.png"),
+              ),
               CircleAvatar(
                 backgroundColor: Colors.white,
-                backgroundImage: AssetImage("images/escudo-de-republica-dominicana.jpg"),),
+                backgroundImage:
+                    AssetImage("images/escudo-de-republica-dominicana.jpg"),
+              ),
             ]),
         ListTile(
           leading: Icon(
@@ -39,13 +44,13 @@ class Menu extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        ListTile( 
+        ListTile(
           leading: Icon(Icons.history_edu_outlined,
               color: Theme.of(context).secondaryHeaderColor),
           title: const Text("Historia"),
           onTap: () {
             GoRouter.of(context).go('/historia');
-            Navigator.pop(context);  
+            Navigator.pop(context);
           },
         ),
         ListTile(
@@ -117,6 +122,17 @@ class Menu extends StatelessWidget {
           title: const Text("Acerca de"),
           onTap: () {
             GoRouter.of(context).go('/info');
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.camera_outdoor_outlined,
+            color: Theme.of(context).secondaryHeaderColor,
+          ),
+          title: const Text("Reportar una situación"),
+          onTap: () {
+            GoRouter.of(context).go('/reporta');
             Navigator.pop(context);
           },
         )
