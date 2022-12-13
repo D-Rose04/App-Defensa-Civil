@@ -1,3 +1,4 @@
+import 'package:defensa_civil/views/reporta_tools/textformfield_edited.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,13 +12,21 @@ class Reporta extends StatefulWidget {
   _ReportaState createState() => _ReportaState();
 }
 
+Ingrese nombre = new Ingrese("hola");
+
 class _ReportaState extends State<Reporta> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NavBar(title: "Reportar situación"),
-      drawer: Menu(),
-      body: ListView(children: [Text("Reporta")]),
+      drawer: const Menu(),
+      body: ListView(children: [
+        Column(
+          children: [
+            nombre.GenerarField(),
+          ],
+        )
+      ]),
     );
   }
 }

@@ -59,6 +59,14 @@ class _InicioSesionState extends State<InicioSesion> {
                     child: Column(
                       children: [
                         Container(
+                          margin: const EdgeInsets.all(2.0),
+                          child: Image.asset(
+                            "images/logo.png",
+                            width: 180,
+                            height: 180,
+                          ),
+                        ),
+                        Container(
                             padding: EdgeInsets.all(5),
                             child: Text(
                               "Inicio de sesión",
