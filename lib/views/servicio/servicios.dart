@@ -18,14 +18,6 @@ class Servicios extends StatefulWidget {
 
 class _ServiciosState extends State<Servicios> with TickerProviderStateMixin {
   late Future<List<Entidad>> data;
-  // late TabBar myTabBar;
-  // late TabController _tabController;
-  late List<Widget> _views = [
-    const Center(
-      child: Text("cargando"),
-    ),
-    const Center(child: Text("cargando"))
-  ];
   List<ServiciosModel> servicios = [];
 
   @override
@@ -35,10 +27,6 @@ class _ServiciosState extends State<Servicios> with TickerProviderStateMixin {
           servicios.add(element.getData());
         }));
     super.initState();
-    _views = [
-      ListaServicios(data: data),
-      const Text("a"),
-    ];
   }
 
   @override
@@ -46,17 +34,11 @@ class _ServiciosState extends State<Servicios> with TickerProviderStateMixin {
     return FutureBuilder(
         future: data,
         builder: (context, snapshot) {
-          return DefaultTabController(
-            length: 2,
-            child: Scaffold(
+          return Scaffold(
+              backgroundColor: Colors.blue.shade900,
               appBar: NavBar(title: "Servicios"),
               drawer: const Menu(),
-              body: TabBarView(
-                physics: const BouncingScrollPhysics(),
-                children: _views,
-              ),
-            ),
-          );
+              body: ListaServicios(data: data));
         });
   }
 }

@@ -49,9 +49,11 @@ class MyApp extends StatelessWidget {
               bodyLarge: TextStyle(color: Colors.blue.shade900),
               labelMedium: TextStyle(color: Colors.orange.shade900),
               headlineSmall: TextStyle(
-                  color: Colors.blue.shade900,
+                  color: Colors.white,
                   fontSize: 18,
-                  fontWeight: FontWeight.bold))),
+                  fontWeight: FontWeight.bold),
+              displaySmall: TextStyle(color: Colors.white)
+            )),
     );
   }
 }

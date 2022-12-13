@@ -55,6 +55,7 @@ class _AlberguesState extends State<Albergues> with TickerProviderStateMixin {
           return DefaultTabController(
               length: 2,
               child: Scaffold(
+                backgroundColor: Theme.of(context).secondaryHeaderColor,
                 appBar: NavBar(
                   canSearch: true,
                   data: data,

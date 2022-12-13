@@ -28,17 +28,45 @@ class _ListaAlberguesState extends State<ListaAlbergues> {
                           snapshot.data![index].getData();
 
                       return Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        child: ListTile(
-                          key: Key("$index"),
-                          leading: Text(albergueActual.codigo),
-                          title: Text(albergueActual.edificio),
-                          subtitle: Text(albergueActual.ciudad),
-                          onTap: () {
-                            Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => AlbergueDetalles(albergueActual: albergueActual,)));
-                          },
-                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Container(
+                              color: Colors.white,
+                              child: ListTile(
+                                key: Key("$index"),
+                                trailing: Text(
+                                  albergueActual.codigo,
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                title: Text(
+                                  albergueActual.edificio,
+                                  style: TextStyle(
+                                      color: Colors.blue.shade900,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                subtitle: Text(
+                                  albergueActual.ciudad,
+                                  style: TextStyle(
+                                      color: Colors.orange.shade900,
+                                      fontSize: 10),
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              AlbergueDetalles(
+                                                albergueActual: albergueActual,
+                                              )));
+                                },
+                              ),
+                            )),
                       );
                     }),
                   )
