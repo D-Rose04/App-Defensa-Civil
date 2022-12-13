@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
 
   // ignore: prefer_final_fields
   GoRouter _router = GoRouter(routes: <GoRoute>[
-    GoRoute(path: '/', builder: (context, state) => const Home()),
+    GoRoute(path: '/', builder: (context, state) => const InicioSesion()),
+    GoRoute(path: '/inicio', builder: (context, state) => const Home()),
     GoRoute(path: '/historia', builder: (context, state) => const Historia()),
     GoRoute(path: '/servicios', builder: (context, state) => Servicios()),
     GoRoute(path: '/noticias', builder: (context, state) => Noticias()),

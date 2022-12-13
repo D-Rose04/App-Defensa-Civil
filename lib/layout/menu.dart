@@ -1,16 +1,18 @@
+import 'package:defensa_civil/models/usuarios_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:go_router/go_router.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
+  static bool logged = false;
+  static UsuarioModel? user;
 
   @override
   _MenuState createState() => _MenuState();
 }
 
 class _MenuState extends State<Menu> {
-  static bool logged = false;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -39,7 +41,7 @@ class _MenuState extends State<Menu> {
                     AssetImage("images/escudo-de-republica-dominicana.jpg"),
               ),
             ]),
-        logged
+        Menu.logged
             ? ListTile(
                 leading: Icon(
                   Icons.camera_outdoor_outlined,
@@ -127,15 +129,6 @@ class _MenuState extends State<Menu> {
           },
         ),
         ListTile(
-          leading: Icon(Icons.volunteer_activism_rounded,
-              color: Theme.of(context).secondaryHeaderColor),
-          title: const Text("Quiero ser voluntario"),
-          onTap: () {
-            GoRouter.of(context).go('/voluntario');
-            Navigator.pop(context);
-          },
-        ),
-        ListTile(
           leading:
               Icon(Icons.info, color: Theme.of(context).secondaryHeaderColor),
           title: const Text("Acerca de"),
@@ -144,7 +137,7 @@ class _MenuState extends State<Menu> {
             Navigator.pop(context);
           },
         ),
-        logged
+        Menu.logged
             ? ListTile(
                 tileColor: Colors.blue.shade900,
                 iconColor: Colors.orange.shade900,
@@ -153,7 +146,10 @@ class _MenuState extends State<Menu> {
                 title: Text("Cerrar sesion"),
                 onTap: () {
                   setState(() {
-                    logged = !logged;
+                    Menu.logged = false;
+                    Menu.user = null;
+                    GoRouter.of(context).go('/inicio_sesion');
+                    Navigator.pop(context);
                   });
                 },
               )
@@ -164,9 +160,6 @@ class _MenuState extends State<Menu> {
                 leading: Icon(Icons.login_rounded),
                 title: Text("Iniciar sesion"),
                 onTap: () {
-                  setState(() {
-                    logged = !logged;
-                  });
                   GoRouter.of(context).go('/inicio_sesion');
                   Navigator.pop(context);
                 },

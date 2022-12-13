@@ -158,7 +158,15 @@ class _HomeState extends State<Home> {
                         padding: const EdgeInsets.all(5),
                         child: ElevatedButton(
                           onPressed: () {
-                            GoRouter.of(context).go("/voluntario");
+                            if (Menu.logged) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      backgroundColor: Colors.orange.shade900,
+                                      content:
+                                          Text("Ya eres voluntario 😁👍!")));
+                            } else {
+                              GoRouter.of(context).go("/voluntario");
+                            }
                           },
                           child: Text("Registrate"),
                           style: ElevatedButton.styleFrom(

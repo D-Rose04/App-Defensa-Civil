@@ -20,7 +20,7 @@ class _ServicioDetallesState extends State<ServicioDetalles> {
                 width: 450,
                 height: 350,
                 //padding: EdgeInsets.all(50.0),
-                child: Image.network(widget.servicioActual.foto)),
+                child: Image.network(widget.servicioActual.telefono)),
             Container(
                 child: Text(widget.servicioActual.nombre,
                     overflow: TextOverflow.visible,
