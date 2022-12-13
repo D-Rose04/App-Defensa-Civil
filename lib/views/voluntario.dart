@@ -21,11 +21,37 @@ class _VoluntarioState extends State<Voluntario> {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> placeholder = [
+      "Ingrese su cedula",
+      "Ingrese su nombre",
+      "Ingrese su apellido",
+      "Ingrese su contraseña",
+      "Ingrese su correo",
+      "Ingrese su telefono",
+    ];
+    myInputDecoration(number) => InputDecoration(
+        hintText: placeholder[number],
+        border: InputBorder.none,
+        filled: true,
+        fillColor: Colors.white,
+        contentPadding:
+            const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
+        focusedBorder: OutlineInputBorder(
+          borderSide:
+              BorderSide(color: Theme.of(context).primaryColor, width: 2.5),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.white),
+          borderRadius: BorderRadius.circular(10.0),
+        ));
+
     return Scaffold(
       appBar: NavBar(
         title: "Voluntariado",
       ),
       drawer: const Menu(),
+      backgroundColor: Colors.blue.shade900,
       body: ListView(children: [
         Container(
           padding: const EdgeInsets.all(5),
@@ -42,8 +68,7 @@ class _VoluntarioState extends State<Voluntario> {
                     padding: EdgeInsets.all(5),
                     child: TextFormField(
                       controller: inputControllerCedula,
-                      decoration:
-                          const InputDecoration(hintText: "Ingrese su cedula"),
+                      decoration: myInputDecoration(0),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Este campo debe ser completado';
@@ -55,8 +80,7 @@ class _VoluntarioState extends State<Voluntario> {
                     padding: EdgeInsets.all(5),
                     child: TextFormField(
                       controller: inputControllerNombre,
-                      decoration:
-                          const InputDecoration(hintText: "Ingrese su nombre"),
+                      decoration: myInputDecoration(1),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Este campo debe ser completado';
@@ -68,8 +92,7 @@ class _VoluntarioState extends State<Voluntario> {
                     padding: EdgeInsets.all(5),
                     child: TextFormField(
                       controller: inputControllerApellido,
-                      decoration: const InputDecoration(
-                          hintText: "Ingrese su apellido"),
+                      decoration: myInputDecoration(2),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Este campo debe ser completado';
@@ -80,9 +103,9 @@ class _VoluntarioState extends State<Voluntario> {
                   Container(
                     padding: EdgeInsets.all(5),
                     child: TextFormField(
+                      // obscureText: true,
                       controller: inputControllerClave,
-                      decoration: const InputDecoration(
-                          hintText: "Ingrese su contraseña"),
+                      decoration: myInputDecoration(3),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Este campo debe ser completado';
@@ -94,8 +117,7 @@ class _VoluntarioState extends State<Voluntario> {
                     padding: EdgeInsets.all(5),
                     child: TextFormField(
                       controller: inputControllerEmail,
-                      decoration:
-                          const InputDecoration(hintText: "Ingrese su email"),
+                      decoration: myInputDecoration(4),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Este campo debe ser completado';
@@ -107,25 +129,37 @@ class _VoluntarioState extends State<Voluntario> {
                     padding: EdgeInsets.all(5),
                     child: TextFormField(
                       controller: inputControllerTelefono,
-                      decoration: const InputDecoration(
-                          hintText: "Ingrese su telefono"),
+                      decoration: myInputDecoration(4),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Este campo debe ser completado';
                         }
+                        return '';
                       },
                     ),
                   ),
                   Container(
                       padding: EdgeInsets.all(5),
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.amber.shade900,
+                          foregroundColor: Colors.white,
+                          shadowColor: Colors.white,
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(32.0)),
+                          minimumSize: Size(250, 50), //////// HERE
+                        ),
                         onPressed: () async {
+                          //validate all the form fields
                           if (_formKey.currentState!.validate()) {
+                            // instantiate a new post request
                             var request = http.MultipartRequest(
                                 'POST',
                                 Uri.parse(
                                     'https://adamix.net/defensa_civil/def/registro.php'));
 
+                            // adds all the field in form data format
                             request.fields.addAll({
                               'cedula': "",
                               'nombre': "",
@@ -135,19 +169,28 @@ class _VoluntarioState extends State<Voluntario> {
                               'telefono': ""
                             });
 
+                            // response result
                             http.StreamedResponse response =
                                 await request.send();
-
+                            print(response.reasonPhrase);
                             if (response.statusCode == 200) {
-                              request.fields.forEach((key, value) => print(value),);
                               print(await response.stream.bytesToString());
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Ok")));
+                              request.fields
+                                  .forEach((key, value) => print(value));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text(
+                                          "Su registro ha sido satisfactorio")));
                             } else {
-                              print(response.reasonPhrase);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content:
+                                          Text("${response.reasonPhrase}")));
                             }
                           }
                         },
                         child: const Text("Enviar"),
+                        
                       ))
                 ],
               )),

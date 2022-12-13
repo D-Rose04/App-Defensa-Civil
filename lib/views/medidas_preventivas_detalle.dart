@@ -1,3 +1,4 @@
+import 'package:defensa_civil/layout/navbar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../models/medidas_preventivas_models.dart';
@@ -17,6 +18,7 @@ class _MedidasPreventivasDetalleState extends State<MedidasPreventivasDetalle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: NavBar(title: widget.medidas_preventivas.titulo),
       body: ListView(
         children: [
           Stack(
@@ -35,18 +37,6 @@ class _MedidasPreventivasDetalleState extends State<MedidasPreventivasDetalle> {
                   fit: BoxFit.cover,
                 ),
                 height: 320,
-              ),
-              AppBar(
-                backgroundColor: Colors.orange.shade900,
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 19),
-                margin: EdgeInsets.only(left: 40, right: 40),
-                alignment: Alignment.center,
-                child: Text(widget.medidas_preventivas.titulo,
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold)),
               ),
             ],
           ),

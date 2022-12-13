@@ -30,6 +30,7 @@ class _MedidasPreventivasState extends State<MedidasPreventivas> {
         future: data,
         builder: (context, snapshot) {
           return Scaffold(
+            backgroundColor: Theme.of(context).secondaryHeaderColor,
             drawer: Menu(),
             appBar: NavBar(title: "Medidas preventivas"),
             body: CustomScrollView(slivers: [
@@ -63,9 +64,10 @@ class _MedidasPreventivasState extends State<MedidasPreventivas> {
                                     child: Text(
                                       medidaactual.titulo,
                                       textAlign: TextAlign.center,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineSmall,
+                                      style: TextStyle(
+                                          color: Colors.blue.shade900,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                 )),
