@@ -174,9 +174,9 @@ class _VoluntarioState extends State<Voluntario> {
                                 await request.send();
                             print(response.headers);
                             if (response.statusCode == 200) {
-                              
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
+                                      backgroundColor: Colors.orange.shade900,
                                       content: Text(
                                           "Su registro ha sido satisfactorio")));
                             } else {
