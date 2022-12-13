@@ -32,6 +32,7 @@ class _NoticiasState extends State<Noticias> {
         future: data,
         builder: (context, snapshot) {
           return Scaffold(
+            backgroundColor: Colors.blue.shade900,
             drawer: Menu(),
             appBar: NavBar(title: "Noticias"),
             body: CustomScrollView(slivers: [
@@ -67,9 +68,10 @@ class _NoticiasState extends State<Noticias> {
                                         right: 5, bottom: 15, top: 20, left: 5),
                                     child: Text(
                                       noticiaActual.titulo,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineSmall,
+                                      style: TextStyle(
+                                          color: Colors.blue.shade900,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Container(

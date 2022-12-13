@@ -35,7 +35,10 @@ class _NoticiasDetalleState extends State<NoticiasDetalle> {
           child: Text(
             widget.noticia.titulo,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineSmall,
+            style: TextStyle(
+                color: Colors.blue.shade900,
+                fontSize: 18,
+                fontWeight: FontWeight.bold),
           ),
         ),
         Padding(

@@ -29,6 +29,7 @@ class _MiembrosState extends State<Miembros> {
         future: data,
         builder: (context, snapshot) {
           return Scaffold(
+            backgroundColor: Theme.of(context).secondaryHeaderColor,
             drawer: Menu(),
             appBar: NavBar(title: "Miembros"),
             body: CustomScrollView(slivers: [

@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
   final imgListSlider = [
     'https://defensacivil.gob.do/images/banners/banner2022/COMISIONWEBBANNER.png',
     'https://defensacivil.gob.do/images/slide/2021/Carta%20Compromiso%20banner.png',
-    'https://defensacivil.gob.do/images/slide/2021/Bannerprincipal_1.jpg',
+    // 'https://defensacivil.gob.do/images/slide/2021/Bannerprincipal_1.jpg',
     'https://defensacivil.gob.do/images/slide/2021/boletin_instirucional_SIN_BORDES.jpg',
     'https://defensacivil.gob.do/images/slide/2021/slider_escuela_2.jpg'
   ];
@@ -45,6 +45,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: Colors.blue.shade900,
         appBar: NavBar(
           title: "Inicio",
         ),
