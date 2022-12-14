@@ -39,7 +39,7 @@ class _ReportaState extends State<Reporta> {
               Radius.circular(7),
             ),
             borderSide: BorderSide(
-              width: 2,
+              width: 2.9,
               color: Color.fromARGB(255, 230, 81, 0),
             ),
           ),
@@ -48,7 +48,7 @@ class _ReportaState extends State<Reporta> {
               Radius.circular(18),
             ),
             borderSide: BorderSide(
-              width: 3.3,
+              width: 1.3,
               color: Color.fromARGB(255, 230, 81, 0),
             ),
           ),
@@ -70,9 +70,11 @@ class _ReportaState extends State<Reporta> {
                 children: [
                   Container(
                     padding: EdgeInsets.all(5),
-                    child: Text("Situación",
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.displaySmall),
+                    child: Text(
+                      "Situación",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.displaySmall,
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.all(5),
