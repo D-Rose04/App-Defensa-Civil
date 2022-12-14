@@ -52,21 +52,10 @@ class _MapaState extends State<Mapa> {
       onMapCreated: (controller) {
         _controller.complete(controller);
 
-        // Marker marker = Marker(
-        //   markerId: const MarkerId('Location'),
-        //   position: LatLng(
-        //       double.parse(widget.coords.lng), double.parse(widget.coords.lat)),
-        //   infoWindow: InfoWindow(
-        //     title:
-        //         '${widget.coords.edificio.toUpperCase()}\n${widget.coords.ciudad.toUpperCase()}',
-        //     snippet: '${widget.coords.lng} ${widget.coords.lat}',
-        //   ),
-        // );
-
-        // controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-        //     zoom: 15,
-        //     target: LatLng(double.parse(widget.coords.lng),
-        //         double.parse(widget.coords.lat)))));
+        controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+            zoom: 12,
+            target: LatLng(double.parse(widget.coords[0].lng),
+                double.parse(widget.coords[0].lat)))));
       },
     );
   }

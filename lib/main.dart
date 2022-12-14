@@ -7,6 +7,7 @@ import 'package:defensa_civil/views/iniciar_sesion.dart';
 import 'package:defensa_civil/views/reporta.dart';
 import 'package:defensa_civil/views/servicio/servicios.dart';
 import 'package:defensa_civil/views/albergue/albergues.dart';
+import 'package:defensa_civil/views/situaciones.dart';
 import 'package:defensa_civil/views/video/Videos.dart';
 import 'package:defensa_civil/views/Voluntario.dart';
 import 'package:defensa_civil/views/medidas_preventivas.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
     GoRoute(path: '/reporta', builder: ((context, state) => const Reporta())),
     GoRoute(path: '/inicio_sesion', builder: ((context, state) => InicioSesion())),
     GoRoute(path: '/cambiar_clave', builder: ((context, state) => CambiarClave())),
+    GoRoute(path: '/situaciones', builder: ((context, state) => Situaciones())),
   ]);
 
   @override

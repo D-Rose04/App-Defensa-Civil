@@ -82,7 +82,7 @@ class _VideosState extends State<Videos> {
                   : SliverToBoxAdapter(
                       child: Container(
                       height: MediaQuery.of(context).size.height,
-                      child: Center(child: CircularProgressIndicator()),
+                      child: Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor)),
                     ))
             ]),
           );

@@ -120,7 +120,9 @@ class _NoticiasState extends State<Noticias> {
                       child: Container(
                       height: MediaQuery.of(context).size.height,
                       padding: const EdgeInsets.all(5),
-                      child: const Center(child: CircularProgressIndicator()),
+                      child: Center(
+                          child: CircularProgressIndicator(
+                              color: Theme.of(context).primaryColor)),
                     ))
             ]),
           );

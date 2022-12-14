@@ -70,7 +70,9 @@ class _ListaServiciosState extends State<ListaServicios> {
                 : SliverToBoxAdapter(
                     child: Container(
                     height: MediaQuery.of(context).size.height,
-                    child: const Center(child: CircularProgressIndicator()),
+                    child: Center(
+                        child: CircularProgressIndicator(
+                            color: Theme.of(context).primaryColor)),
                   ))
           ]);
         });
