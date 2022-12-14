@@ -43,27 +43,32 @@ class _MiembrosState extends State<Miembros> {
                             margin: const EdgeInsets.only(top: 10),
                             child: Container(
                               child: Column(children: [
-                                CircleAvatar(
-                                  radius: 116,
-                                  backgroundColor: Colors.orange.shade900,
+                                Container(
                                   child: CircleAvatar(
-                                    radius: 113.5,
-                                    backgroundImage:
-                                        NetworkImage(miembroactual.foto),
+                                    radius: 116,
+                                    backgroundColor: Colors.blue.shade400,
+                                    child: CircleAvatar(
+                                      radius: 113.5,
+                                      backgroundImage:
+                                          NetworkImage(miembroactual.foto),
+                                    ),
                                   ),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.all(31),
+                                  margin: EdgeInsets.all(38),
                                   child: Column(children: [
                                     Text(miembroactual.cargo,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headlineSmall),
-                                    Text(
-                                      miembroactual.nombre,
-                                      style: TextStyle(
-                                          color: Colors.orange.shade900,
-                                          fontWeight: FontWeight.bold),
+                                    Container(
+                                      padding: EdgeInsets.only(top: 10),
+                                      child: Text(
+                                        miembroactual.nombre,
+                                        style: TextStyle(
+                                            color: Colors.orange.shade900,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     )
                                   ]),
                                 )
