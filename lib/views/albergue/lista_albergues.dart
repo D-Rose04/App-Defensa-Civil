@@ -74,7 +74,7 @@ class _ListaAlberguesState extends State<ListaAlbergues> {
                 : SliverToBoxAdapter(
                     child: Container(
                     height: MediaQuery.of(context).size.height,
-                    child: Center(child: CircularProgressIndicator()),
+                    child: Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor)),
                   ))
           ]);
         });

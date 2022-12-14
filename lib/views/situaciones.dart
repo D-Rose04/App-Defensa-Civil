@@ -19,8 +19,7 @@ class Situaciones extends StatefulWidget {
 }
 
 class _SituacionesState extends State<Situaciones> {
-  late List data;
-  List<SituacionModel> situaciones = [];
+  List data = [];
   handleData() async {
     var request = http.MultipartRequest('POST',
         Uri.parse('https://adamix.net/defensa_civil/def/situaciones.php'));
@@ -32,9 +31,11 @@ class _SituacionesState extends State<Situaciones> {
     http.StreamedResponse response = await request.send();
     http.Response body = await http.Response.fromStream(response);
     final parsed = jsonDecode(body.body) as Map<String, dynamic>;
-    data = List.from(parsed['datos'])
-        .map<SituacionModel>((e) => SituacionModel.fromJson(e))
-        .toList();
+    setState(() {
+      data = List.from(parsed['datos'])
+          .map<SituacionModel>((e) => SituacionModel.fromJson(e))
+          .toList();
+    });
   }
 
   @override
@@ -51,52 +52,63 @@ class _SituacionesState extends State<Situaciones> {
         drawer: Menu(),
         body: CustomScrollView(
           slivers: [
-            SliverList(
-                delegate: SliverChildBuilderDelegate(
-              childCount: data.length,
-              (context, index) {
-                SituacionModel situacionActual = data[index];
-                return Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        color: Colors.white,
-                        child: ListTile(
-                          key: Key("$index"),
-                          trailing: Text(
-                            situacionActual.estado,
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12,
-                            ),
+            data.isEmpty
+                ? SliverToBoxAdapter(
+                    child: Container(
+                        height: MediaQuery.of(context).size.height,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: Theme.of(context).primaryColor,
                           ),
-                          title: Text(
-                            situacionActual.titulo,
-                            style: TextStyle(
-                                color: Colors.blue.shade900,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(
-                            situacionActual.descripcion,
-                            style: TextStyle(
-                                color: Colors.orange.shade900, fontSize: 10),
-                          ),
-                          onTap: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => AlbergueDetalles(
-                            //               albergueActual: albergueActual,
-                            //             )));
-                          },
-                        ),
-                      )),
-                );
-              },
-            ))
+                        )),
+                  )
+                : SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                    childCount: data.length,
+                    (context, index) {
+                      SituacionModel situacionActual = data[index];
+                      return Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Container(
+                              color: Colors.white,
+                              child: ListTile(
+                                key: Key("$index"),
+                                trailing: Text(
+                                  situacionActual.estado,
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                title: Text(
+                                  situacionActual.titulo,
+                                  style: TextStyle(
+                                      color: Colors.blue.shade900,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                subtitle: Text(
+                                  situacionActual.descripcion,
+                                  style: TextStyle(
+                                      color: Colors.orange.shade900,
+                                      fontSize: 10),
+                                ),
+                                onTap: () {
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => AlbergueDetalles(
+                                  //               albergueActual: albergueActual,
+                                  //             )));
+                                },
+                              ),
+                            )),
+                      );
+                    },
+                  ))
           ],
         ));
   }
