@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:defensa_civil/models/post_response_model.dart';
+import 'package:defensa_civil/models/usuarios_post_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../layout/menu.dart';
@@ -139,8 +139,8 @@ class _InicioSesionState extends State<InicioSesion> {
 
                                       if (response.statusCode == 200 &&
                                           parsed["exito"] == true) {
-                                        PostResponseModel res =
-                                            PostResponseModel.fromJson(parsed);
+                                        UsuarioPostResponseModel res =
+                                            UsuarioPostResponseModel.fromJson(parsed);
 
                                         Menu.user = res.datos;
                                         Menu.logged = res.exito;

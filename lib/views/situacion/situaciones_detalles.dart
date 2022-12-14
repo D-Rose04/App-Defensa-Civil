@@ -44,7 +44,7 @@ class _SituacionDetallesState extends State<SituacionDetalles> {
             ),
             Container(
               child: Text(
-                widget.situacionActual.nombre,
+                widget.situacionActual.voluntario,
                 overflow: TextOverflow.visible,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontStyle: FontStyle.normal,
@@ -55,7 +55,7 @@ class _SituacionDetallesState extends State<SituacionDetalles> {
             ),
             Container(
               child: Text(
-                widget.situacionActual.descripcion,
+                widget.situacionActual.titulo,
                 overflow: TextOverflow.visible,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontStyle: FontStyle.normal,

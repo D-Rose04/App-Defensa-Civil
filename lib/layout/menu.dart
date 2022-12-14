@@ -54,6 +54,19 @@ class _MenuState extends State<Menu> {
             Navigator.pop(context);
           },
         )),
+        Visibility(
+          visible: Menu.logged,
+            child: ListTile(
+          leading: Icon(
+            Icons.assignment_late_rounded,
+            color: Theme.of(context).secondaryHeaderColor,
+          ),
+          title: const Text("Mis situaciones"),
+          onTap: () {
+            GoRouter.of(context).go('/situaciones');
+            Navigator.pop(context);
+          },
+        )),
         ListTile(
           leading: Icon(
             Icons.home,

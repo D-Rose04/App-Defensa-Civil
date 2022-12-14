@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:defensa_civil/layout/navbar.dart';
-import 'package:defensa_civil/models/post_response_model.dart';
+import 'package:defensa_civil/models/usuarios_post_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../layout/menu.dart';
@@ -45,6 +45,7 @@ class _CambiarClaveState extends State<CambiarClave> {
 
     return Scaffold(
         appBar: NavBar(title: 'Cambio de contraseña'),
+        drawer: Menu(),
         backgroundColor: Colors.blue.shade900,
         body: ListView(
           children: [
@@ -130,7 +131,7 @@ class _CambiarClaveState extends State<CambiarClave> {
                                               response);
                                       final parsed = jsonDecode(body.body)
                                           as Map<String, dynamic>;
-                                          
+
                                       if (response.statusCode == 200) {
                                         GoRouter.of(context).go('/inicio');
                                       }

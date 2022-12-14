@@ -1,18 +1,18 @@
 import 'package:defensa_civil/models/usuarios_model.dart';
 
-class PostResponseModel {
+class UsuarioPostResponseModel {
   final bool exito;
   final UsuarioModel datos;
   final String mensaje;
 
-  const PostResponseModel(
+  const UsuarioPostResponseModel(
       {required this.exito,
       required this.datos,
       required this.mensaje,
 });
 
-  factory PostResponseModel.fromJson(Map<String, dynamic> json) {
-    return PostResponseModel(
+  factory UsuarioPostResponseModel.fromJson(Map<String, dynamic> json) {
+    return UsuarioPostResponseModel(
         exito: json["exito"],
         datos: UsuarioModel.fromJson(json["datos"]),
         mensaje: json["mensaje"]);

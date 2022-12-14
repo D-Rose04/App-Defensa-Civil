@@ -1,7 +1,11 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:defensa_civil/views/reporta_tools/valuesProccess.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 import '../layout/menu.dart';
 import '../layout/navbar.dart';
@@ -19,6 +23,10 @@ class _ReportaState extends State<Reporta> {
   final valueCtlr2 = TextEditingController();
   final valueCtlr3 = TextEditingController();
   final valueCtlr4 = TextEditingController();
+  final picker = ImagePicker();
+  File? image;
+  String base64Image = "";
+
   @override
   Widget build(BuildContext context) {
     final List<String> placeholder = [
@@ -68,12 +76,72 @@ class _ReportaState extends State<Reporta> {
           child: Form(
               key: _formKey,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     padding: EdgeInsets.all(5),
-                    child: Text("Situación",
-                        textAlign: TextAlign.center,
+                    child: Text("Reportar situación",
                         style: Theme.of(context).textTheme.displaySmall),
+                  ),
+                  Container(
+                    height: 400,
+                    padding: const EdgeInsets.only(top: 10),
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Container(
+                          color: Colors.grey.shade300,
+                          child: image != null
+                              ? Image(
+                                  image: FileImage(image!),
+                                  fit: BoxFit.fill,
+                                  height: 430,
+                                )
+                              : const Center(
+                                  child: Icon(Icons.image),
+                                ),
+                        )),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {
+                              getImage(ImageSource.gallery);
+                            },
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [Icon(Icons.image), Text("Galería")]),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.green.shade400,
+                              foregroundColor: Colors.white,
+                              shadowColor: Colors.white,
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32.0)),
+                              minimumSize: Size(140, 50),
+                            )),
+                        ElevatedButton(
+                            onPressed: () async {
+                              getImage(ImageSource.camera);
+                            },
+                            child: Row(
+                                children: [Icon(Icons.camera), Text("Cámara")]),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue.shade400,
+                              foregroundColor: Colors.white,
+                              shadowColor: Colors.white,
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32.0)),
+                              minimumSize: Size(140, 50),
+                            ))
+                      ],
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.all(5),
@@ -133,7 +201,7 @@ class _ReportaState extends State<Reporta> {
                           elevation: 3,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(32.0)),
-                          minimumSize: Size(250, 50), //////// HERE
+                          minimumSize: Size(320, 50),
                         ),
                         onPressed: () async {
                           //validate all the form fields
@@ -147,28 +215,23 @@ class _ReportaState extends State<Reporta> {
                             request.fields.addAll({
                               'titulo': valueCtlr.text,
                               'descripcion': valueCtlr2.text,
-                              'foto': "",
+                              'foto': base64Image,
                               'latitud': valueCtlr3.text,
                               'longitud': valueCtlr4.text,
-                              'token':
-                                  "", ////// David pon tu el token XDXD XDXDXD
+                              'token': Menu.user?.token
                             });
 
                             // response result
                             http.StreamedResponse response =
                                 await request.send();
-                            print(response.headers);
-                            if (response.statusCode == 200) {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  backgroundColor: Colors.orange.shade900,
-                                  content: Text(
-                                      "Su situación se ha reportado con éxito!!!!")));
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content:
-                                          Text("${response.reasonPhrase}")));
-                            }
+                            http.Response body =
+                                await http.Response.fromStream(response);
+                            final parsed =
+                                jsonDecode(body.body) as Map<String, dynamic>;
+
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                backgroundColor: Colors.orange.shade900,
+                                content: Text(parsed["mensaje"])));
                           }
                         },
                         child: const Text("Reportar"),
@@ -178,5 +241,17 @@ class _ReportaState extends State<Reporta> {
         ),
       ]),
     );
+  }
+
+  void getImage(source) async {
+    XFile? imagePicked = await picker.pickImage(source: source);
+    setState(() {
+      if (imagePicked != null) {
+        image = File(imagePicked.path);
+        final bytes = File(image!.path).readAsBytesSync();
+        // base64Image = "data:image/png;base64," + base64Encode(bytes);
+         base64Image = base64Encode(bytes);
+      }
+    });
   }
 }
