@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:defensa_civil/views/reporta_tools/valuesProccess.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -48,7 +46,7 @@ class _ReportaState extends State<Reporta> {
               Radius.circular(7),
             ),
             borderSide: BorderSide(
-              width: 2,
+              width: 2.9,
               color: Color.fromARGB(255, 230, 81, 0),
             ),
           ),
@@ -57,7 +55,7 @@ class _ReportaState extends State<Reporta> {
               Radius.circular(18),
             ),
             borderSide: BorderSide(
-              width: 3.3,
+              width: 1.3,
               color: Color.fromARGB(255, 230, 81, 0),
             ),
           ),

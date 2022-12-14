@@ -18,34 +18,39 @@ class _MedidasPreventivasDetalleState extends State<MedidasPreventivasDetalle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue.shade900,
       appBar: NavBar(title: widget.medidas_preventivas.titulo),
       body: ListView(
         children: [
           Stack(
             children: [
               Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.only(top: 55),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                  width: 3,
-                  color: Colors.white,
-                )),
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.blue.shade800,
+                      width: 4,
+                    ),
+                  ),
+                ),
                 child: Image(
-                  //alignment: Alignment.center,
                   image: NetworkImage(widget.medidas_preventivas.foto),
                   fit: BoxFit.cover,
                 ),
-                height: 320,
+                height: 400,
               ),
             ],
           ),
           Container(
-            margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+            margin: EdgeInsets.all(15),
             child: Text(
               widget.medidas_preventivas.descripcion,
-              //textAlign: TextAlign.center,
               textAlign: TextAlign.justify,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           )
         ],

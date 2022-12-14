@@ -161,33 +161,38 @@ class _MenuState extends State<Menu> {
             Navigator.pop(context);
           },
         ),
-        Menu.logged
-            ? ListTile(
+        Divider(),
+        Spacer(),
+        // Menu.logged
+            ListTile(
                 tileColor: Colors.blue.shade900,
                 iconColor: Colors.orange.shade900,
                 textColor: Colors.white,
-                leading: Icon(Icons.logout_rounded),
-                title: Text("Cerrar sesion"),
+                leading: Menu.logged? Icon(Icons.logout_rounded):Icon(Icons.login_rounded),
+                title: Menu.logged? Text("Cerrar sesion") : Text("Iniciar sesion") ,
                 onTap: () {
                   setState(() {
-                    Menu.logged = false;
-                    Menu.user = null;
+                    if(Menu.logged){
+                      Menu.logged = false;
+                      Menu.user = null;
+                    }
                     GoRouter.of(context).go('/inicio_sesion');
                     Navigator.pop(context);
+
                   });
                 },
               )
-            : ListTile(
-                tileColor: Colors.blue.shade900,
-                iconColor: Colors.orange.shade900,
-                textColor: Colors.white,
-                leading: Icon(Icons.login_rounded),
-                title: Text("Iniciar sesion"),
-                onTap: () {
-                  GoRouter.of(context).go('/inicio_sesion');
-                  Navigator.pop(context);
-                },
-              )
+            // : ListTile(
+            //     tileColor: Colors.blue.shade900,
+            //     iconColor: Colors.orange.shade900,
+            //     textColor: Colors.white,
+            //     leading: Icon(Icons.login_rounded),
+            //     title: Text("Iniciar sesion"),
+            //     onTap: () {
+            //       GoRouter.of(context).go('/inicio_sesion');
+            //       Navigator.pop(context);
+            //     },
+            //   )
       ]),
     );
   }
