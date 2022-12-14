@@ -41,32 +41,6 @@ class _MenuState extends State<Menu> {
                     AssetImage("images/escudo-de-republica-dominicana.jpg"),
               ),
             ]),
-        Visibility(
-          visible: Menu.logged,
-            child: ListTile(
-          leading: Icon(
-            Icons.camera_outdoor_outlined,
-            color: Theme.of(context).secondaryHeaderColor,
-          ),
-          title: const Text("Reportar una situación"),
-          onTap: () {
-            GoRouter.of(context).go('/reporta');
-            Navigator.pop(context);
-          },
-        )),
-        Visibility(
-          visible: Menu.logged,
-            child: ListTile(
-          leading: Icon(
-            Icons.assignment_late_rounded,
-            color: Theme.of(context).secondaryHeaderColor,
-          ),
-          title: const Text("Mis situaciones"),
-          onTap: () {
-            GoRouter.of(context).go('/situaciones');
-            Navigator.pop(context);
-          },
-        )),
         ListTile(
           leading: Icon(
             Icons.home,
@@ -78,6 +52,32 @@ class _MenuState extends State<Menu> {
             Navigator.pop(context);
           },
         ),
+        Visibility(
+            visible: Menu.logged,
+            child: ListTile(
+              leading: Icon(
+                Icons.camera_outdoor_outlined,
+                color: Theme.of(context).secondaryHeaderColor,
+              ),
+              title: const Text("Reportar una situación"),
+              onTap: () {
+                GoRouter.of(context).go('/reporta');
+                Navigator.pop(context);
+              },
+            )),
+        Visibility(
+            visible: Menu.logged,
+            child: ListTile(
+              leading: Icon(
+                Icons.assignment_late_rounded,
+                color: Theme.of(context).secondaryHeaderColor,
+              ),
+              title: const Text("Mis situaciones"),
+              onTap: () {
+                GoRouter.of(context).go('/situaciones');
+                Navigator.pop(context);
+              },
+            )),
         ListTile(
           leading: Icon(Icons.history_edu_outlined,
               color: Theme.of(context).secondaryHeaderColor),
