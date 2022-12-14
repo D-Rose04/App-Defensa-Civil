@@ -41,19 +41,19 @@ class _MenuState extends State<Menu> {
                     AssetImage("images/escudo-de-republica-dominicana.jpg"),
               ),
             ]),
-        Menu.logged
-            ? ListTile(
-                leading: Icon(
-                  Icons.camera_outdoor_outlined,
-                  color: Theme.of(context).secondaryHeaderColor,
-                ),
-                title: const Text("Reportar una situación"),
-                onTap: () {
-                  GoRouter.of(context).go('/reporta');
-                  Navigator.pop(context);
-                },
-              )
-            : Text(""),
+        Visibility(
+          visible: Menu.logged,
+            child: ListTile(
+          leading: Icon(
+            Icons.camera_outdoor_outlined,
+            color: Theme.of(context).secondaryHeaderColor,
+          ),
+          title: const Text("Reportar una situación"),
+          onTap: () {
+            GoRouter.of(context).go('/reporta');
+            Navigator.pop(context);
+          },
+        )),
         ListTile(
           leading: Icon(
             Icons.home,
@@ -128,6 +128,17 @@ class _MenuState extends State<Menu> {
             Navigator.pop(context);
           },
         ),
+        Visibility(
+            visible: Menu.logged,
+            child: ListTile(
+              leading: Icon(Icons.password,
+                  color: Theme.of(context).secondaryHeaderColor),
+              title: const Text("Cambiar contraseña"),
+              onTap: () {
+                GoRouter.of(context).go('/cambiar_clave');
+                Navigator.pop(context);
+              },
+            )),
         ListTile(
           leading:
               Icon(Icons.info, color: Theme.of(context).secondaryHeaderColor),

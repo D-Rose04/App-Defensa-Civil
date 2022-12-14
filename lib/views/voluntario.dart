@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:defensa_civil/models/response_model.dart';
 import 'package:flutter/material.dart';
 import '../layout/menu.dart';
@@ -172,19 +174,24 @@ class _VoluntarioState extends State<Voluntario> {
                             // response result
                             http.StreamedResponse response =
                                 await request.send();
-                            print(response.headers);
+                            http.Response body =
+                                await http.Response.fromStream(response);
+                            final parsed =
+                                jsonDecode(body.body) as Map<String, dynamic>;
+
                             if (response.statusCode == 200) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      backgroundColor: Colors.orange.shade900,
-                                      content: Text(
-                                          "Su registro ha sido satisfactorio")));
+                              
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                       content:
                                           Text("${response.reasonPhrase}")));
                             }
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      backgroundColor: Colors.orange.shade900,
+                                      content: Text(parsed["mensaje"])));
                           }
                         },
                         child: const Text("Enviar"),
