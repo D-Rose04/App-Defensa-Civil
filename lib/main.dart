@@ -2,6 +2,7 @@ import 'package:defensa_civil/views/Historia.dart';
 import 'package:defensa_civil/views/Home.dart';
 import 'package:defensa_civil/views/Info.dart';
 import 'package:defensa_civil/views/Noticias.dart';
+import 'package:defensa_civil/views/cambiar_clave.dart';
 import 'package:defensa_civil/views/iniciar_sesion.dart';
 import 'package:defensa_civil/views/reporta.dart';
 import 'package:defensa_civil/views/servicio/servicios.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
     GoRoute(path: '/info', builder: (context, state) => const Info()),
     GoRoute(path: '/reporta', builder: ((context, state) => const Reporta())),
     GoRoute(path: '/inicio_sesion', builder: ((context, state) => InicioSesion())),
+    GoRoute(path: '/cambiar_clave', builder: ((context, state) => CambiarClave())),
   ]);
 
   @override

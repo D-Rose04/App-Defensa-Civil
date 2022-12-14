@@ -1,28 +1,29 @@
 import 'dart:convert';
 
+import 'package:defensa_civil/layout/navbar.dart';
 import 'package:defensa_civil/models/post_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../layout/menu.dart';
 import 'package:http/http.dart' as http;
 
-class InicioSesion extends StatefulWidget {
-  const InicioSesion({Key? key}) : super(key: key);
+class CambiarClave extends StatefulWidget {
+  const CambiarClave({Key? key}) : super(key: key);
 
   @override
-  _InicioSesionState createState() => _InicioSesionState();
+  _CambiarClaveState createState() => _CambiarClaveState();
 }
 
-class _InicioSesionState extends State<InicioSesion> {
+class _CambiarClaveState extends State<CambiarClave> {
   final _formKey = GlobalKey<FormState>();
-  final inputControllerCedula = TextEditingController();
-  final inputControllerClave = TextEditingController();
+  final inputControllerClaveAnterior = TextEditingController();
+  final inputControllerClaveNueva = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final List<String> placeholder = [
-      "Ingrese su cedula",
-      "Ingrese su contraseña",
+      "Ingrese su anterior contraseña",
+      "Ingrese su nueva contraseña",
     ];
 
     myInputDecoration(number) => InputDecoration(
@@ -43,6 +44,7 @@ class _InicioSesionState extends State<InicioSesion> {
         ));
 
     return Scaffold(
+        appBar: NavBar(title: 'Cambio de contraseña'),
         backgroundColor: Colors.blue.shade900,
         body: ListView(
           children: [
@@ -60,26 +62,15 @@ class _InicioSesionState extends State<InicioSesion> {
                         child: Column(
                           children: [
                             Container(
-                              margin: const EdgeInsets.all(2.0),
-                              child: Image.asset(
-                                "images/logo.png",
-                                width: 180,
-                                height: 180,
-                              ),
-                            ),
-                            Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text(
-                                  "Inicio de sesión",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.bold),
-                                )),
+                                child: Text("Cambiar Contraseña",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall)),
                             Container(
                               padding: EdgeInsets.all(5),
                               child: TextFormField(
-                                controller: inputControllerCedula,
+                                controller: inputControllerClaveAnterior,
                                 decoration: myInputDecoration(0),
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -92,7 +83,7 @@ class _InicioSesionState extends State<InicioSesion> {
                               padding: EdgeInsets.all(5),
                               child: TextFormField(
                                 obscureText: true,
-                                controller: inputControllerClave,
+                                controller: inputControllerClaveNueva,
                                 decoration: myInputDecoration(1),
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -121,11 +112,14 @@ class _InicioSesionState extends State<InicioSesion> {
                                       var request = http.MultipartRequest(
                                           'POST',
                                           Uri.parse(
-                                              'https://adamix.net/defensa_civil/def/iniciar_sesion.php'));
+                                              'https://adamix.net/defensa_civil/def/cambiar_clave.php'));
                                       // adds all the field in form data format
                                       request.fields.addAll({
-                                        'cedula': inputControllerCedula.text,
-                                        'clave': inputControllerClave.text,
+                                        'token': Menu.user?.token,
+                                        'clave_anterior':
+                                            inputControllerClaveAnterior.text,
+                                        'clave_nueva':
+                                            inputControllerClaveNueva.text,
                                       });
 
                                       // response result
@@ -136,29 +130,16 @@ class _InicioSesionState extends State<InicioSesion> {
                                               response);
                                       final parsed = jsonDecode(body.body)
                                           as Map<String, dynamic>;
-
-                                      if (response.statusCode == 200 &&
-                                          parsed["exito"] == true) {
-                                        PostResponseModel res =
-                                            PostResponseModel.fromJson(parsed);
-
-                                        Menu.user = res.datos;
-                                        Menu.logged = res.exito;
-
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
-                                                backgroundColor:
-                                                    Colors.orange.shade900,
-                                                content: Text(
-                                                    "Bienvenido/a ${Menu.user?.nombre} ${Menu.user?.apellido}")));
+                                          
+                                      if (response.statusCode == 200) {
                                         GoRouter.of(context).go('/inicio');
-                                      } else {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
-                                                backgroundColor:
-                                                    Colors.orange.shade900,
-                                                content: Text(parsed["mensaje"])));
                                       }
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              backgroundColor:
+                                                  Colors.orange.shade900,
+                                              content:
+                                                  Text(parsed["mensaje"])));
                                     }
                                   },
                                   child: const Text(
@@ -169,37 +150,6 @@ class _InicioSesionState extends State<InicioSesion> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                 )),
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 20),
-                              child: Text(
-                                "O",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blue,
-                                  foregroundColor: Colors.white,
-                                  shadowColor: Colors.white,
-                                  elevation: 3,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(32.0)),
-                                  minimumSize: Size(340, 50),
-                                ),
-                                onPressed: () {
-                                  GoRouter.of(context).go('/inicio');
-                                },
-                                child: Text(
-                                  "Continua como invitado",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ))
                           ],
                         )),
                   ),
