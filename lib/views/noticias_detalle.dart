@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../models/noticias_model.dart';
 
+
 class NoticiasDetalle extends StatefulWidget {
   const NoticiasDetalle({Key? key, required this.noticia}) : super(key: key);
   final NoticiasModel noticia;
@@ -14,7 +15,9 @@ class NoticiasDetalle extends StatefulWidget {
 class _NoticiasDetalleState extends State<NoticiasDetalle> {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
+      backgroundColor: Colors.blue.shade900,
       body: ListView(children: [
         Stack(children: [
           Container(
@@ -36,7 +39,10 @@ class _NoticiasDetalleState extends State<NoticiasDetalle> {
             widget.noticia.titulo,
             textAlign: TextAlign.center,
             style: TextStyle(
+
+                color: Colors.orange.shade900,
                 color: Colors.blue.shade900,
+
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -46,6 +52,9 @@ class _NoticiasDetalleState extends State<NoticiasDetalle> {
           child: Text(
             widget.noticia.contenido,
             textAlign: TextAlign.justify,
+
+            style: TextStyle(
+                      color: Colors.white,)
           ),
         )
       ]),
