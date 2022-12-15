@@ -13,36 +13,50 @@ class _ServicioDetallesState extends State<ServicioDetalles> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.blue.shade900,
         appBar: NavBar(title: widget.servicioActual.nombre),
-        body: Column(
-          children: [
-            Container(
-                width: 450,
-                height: 350,
-                //padding: EdgeInsets.all(50.0),
-                child: Image.network(widget.servicioActual.foto)),
-            Container(
-                child: Text(widget.servicioActual.nombre,
-                    overflow: TextOverflow.visible,
-                    textAlign: TextAlign.center,
-                    style:
-                        const TextStyle(fontWeight: FontWeight.bold, fontSize: 20))
-            ),
-            Container(
+        body: ListView(children: [
+          Container(
               padding: const EdgeInsets.all(10.0),
             ),
-            Container(
-              child: Text(
-                widget.servicioActual.descripcion,
-                overflow: TextOverflow.visible,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontStyle: FontStyle.normal,
-                color: Colors.orange.shade900),
+          Container(
+              child: CircleAvatar(
+            radius: 116,
+            backgroundColor: Colors.white,
+            child: CircleAvatar(
+              radius: 113.5,
+              backgroundImage: NetworkImage(widget.servicioActual.foto),
+            ),
+          )
+              // width: 450,
+              // height: 350,
+              // padding: EdgeInsets.all(10.0),
+              //child: Image.network(widget.servicioActual.foto)
               ),
-              
-              //Theme.of(context).textTheme.labelMedium,
-            )
-          ],
-        ));
+          Container(
+            margin: EdgeInsets.all(15),
+            child: Text(
+              widget.servicioActual.nombre,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.orange.shade900,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(15),
+            child: Text(
+              widget.servicioActual.descripcion,
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ]));
   }
 }

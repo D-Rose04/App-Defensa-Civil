@@ -4,16 +4,12 @@ import '../../models/entidad.dart';
 import 'package:flutter/material.dart';
 import '../../models/servicios_model.dart';
 
-
-
-
 class ListaServicios extends StatefulWidget {
   const ListaServicios({Key? key, required this.data}) : super(key: key);
   final Future<List<Entidad>> data;
 
   @override
   _ListaServiciosState createState() => _ListaServiciosState();
-
 }
 
 class _ListaServiciosState extends State<ListaServicios> {
@@ -31,15 +27,41 @@ class _ListaServiciosState extends State<ListaServicios> {
                           snapshot.data![index].getData();
 
                       return Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        child: ListTile(
-                          key: Key("$index"),
-                          leading: Text(servicioActual.id),
-                          title: Text(servicioActual.nombre),
-                          onTap: () {
-                            Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => ServicioDetalles(servicioActual: servicioActual,)));
-                          },
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            color: Colors.white,
+                            child: Container(
+                              child: ListTile(
+                                key: Key("$index"),
+                                trailing: Text(
+                                  servicioActual.id,
+                                  style: TextStyle(
+                                      color: Colors.orange.shade900,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                title: Text(
+                                  servicioActual.nombre,
+                                  style: TextStyle(
+                                      color: Colors.blue.shade900,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ServicioDetalles(
+                                                servicioActual: servicioActual,
+                                              )));
+                                },
+                              ),
+                            ),
+                          ),
                         ),
                       );
                     }),
@@ -48,11 +70,11 @@ class _ListaServiciosState extends State<ListaServicios> {
                 : SliverToBoxAdapter(
                     child: Container(
                     height: MediaQuery.of(context).size.height,
-                    child: const Center(child: CircularProgressIndicator()),
+                    child: Center(
+                        child: CircularProgressIndicator(
+                            color: Theme.of(context).primaryColor)),
                   ))
           ]);
         });
   }
-
-
 }
