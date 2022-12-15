@@ -31,8 +31,9 @@ class _VideosState extends State<Videos> {
         future: data,
         builder: (context, snapshot) {
           return Scaffold(
-            appBar: const NavBar(title: "Videos"),
-            drawer: const Menu(),
+            backgroundColor: Colors.blue.shade900,
+            appBar: NavBar(title: "Videos"),
+            drawer: Menu(),
             body: CustomScrollView(slivers: [
               snapshot.hasData
                   ? SliverList(
@@ -41,21 +42,39 @@ class _VideosState extends State<Videos> {
                         VideoModel videoActual =
                             snapshot.data![index].getData();
                         return Container(
-                          margin: const EdgeInsets.only(top: 10),
-                          child: ListTile(
-                            key: Key("$index"),
-                            leading: const Icon(Icons.video_collection),
-                            title: Text(videoActual.titulo),
-                            subtitle: Text(videoActual.fecha),
-                            onTap: () {
-                              Navigator.push(context, 
-                              MaterialPageRoute(
-                                builder: (context) => VideoDisplay(
-                                  title: videoActual.titulo, url: videoActual.link) 
-                                )
-                              );
-                            },
-                          ),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Container(
+                                color: Colors.white,
+                                child: ListTile(
+                                  key: Key("$index"),
+                                  iconColor: Colors.orange.shade900,
+                                  trailing: const Icon(Icons.play_arrow),
+                                  title: Text(
+                                    videoActual.titulo,
+                                    style: TextStyle(
+                                        color: Colors.blue.shade900,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  subtitle: Text(
+                                    videoActual.fecha,
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 12),
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => VideoDisplay(
+                                                title: videoActual.titulo,
+                                                url: videoActual.link)));
+                                  },
+                                ),
+                              )),
                         );
                       }),
                     )
@@ -63,7 +82,7 @@ class _VideosState extends State<Videos> {
                   : SliverToBoxAdapter(
                       child: Container(
                       height: MediaQuery.of(context).size.height,
-                      child: Center(child: CircularProgressIndicator()),
+                      child: Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor)),
                     ))
             ]),
           );

@@ -39,7 +39,10 @@ class _NoticiasDetalleState extends State<NoticiasDetalle> {
             widget.noticia.titulo,
             textAlign: TextAlign.center,
             style: TextStyle(
+
                 color: Colors.orange.shade900,
+                color: Colors.blue.shade900,
+
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -49,6 +52,7 @@ class _NoticiasDetalleState extends State<NoticiasDetalle> {
           child: Text(
             widget.noticia.contenido,
             textAlign: TextAlign.justify,
+
             style: TextStyle(
                       color: Colors.white,)
           ),

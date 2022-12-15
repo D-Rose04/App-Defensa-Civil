@@ -1,23 +1,31 @@
+import 'package:defensa_civil/models/usuarios_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:go_router/go_router.dart';
 
-class Menu extends StatelessWidget {
+class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
+  static bool logged = false;
+  static UsuarioModel? user;
 
+  @override
+  _MenuState createState() => _MenuState();
+}
+
+class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
       // ignore: prefer_const_literals_to_create_immutables
       child: ListView(children: [
         const UserAccountsDrawerHeader(
-          margin: EdgeInsets.zero,
+            margin: EdgeInsets.zero,
             accountName: Text("Defensa Civil"),
             accountEmail: Text("809-472-8614 / 8617"),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(
-                  "https://hoy.com.do/wp-content/uploads/2022/04/Defensa-CIvil.jpeg",
+                image: AssetImage(
+                  "images/menu-background.jpeg",
                 ),
                 fit: BoxFit.fill,
               ),
@@ -25,13 +33,12 @@ class Menu extends StatelessWidget {
             otherAccountsPictures: [
               CircleAvatar(
                 backgroundColor: Colors.white,
-                backgroundImage: NetworkImage(
-                    "https://defensacivil.gob.do/images/Log%20DC%20Nueva%20versio%CC%81n5-01.png"),
+                backgroundImage: AssetImage("images/logo.png"),
               ),
               CircleAvatar(
                 backgroundColor: Colors.white,
-                backgroundImage: NetworkImage(
-                    "https://images.visitarepublicadominicana.org/escudo-de-republica-dominicana.jpg"),
+                backgroundImage:
+                    AssetImage("images/escudo-de-republica-dominicana.jpg"),
               ),
             ]),
         ListTile(
@@ -41,17 +48,43 @@ class Menu extends StatelessWidget {
           ),
           title: Text("Inicio"),
           onTap: () {
-            GoRouter.of(context).go('/');
+            GoRouter.of(context).go('/inicio');
             Navigator.pop(context);
           },
         ),
-        ListTile( 
+        Visibility(
+            visible: Menu.logged,
+            child: ListTile(
+              leading: Icon(
+                Icons.camera_outdoor_outlined,
+                color: Theme.of(context).secondaryHeaderColor,
+              ),
+              title: const Text("Reportar una situación"),
+              onTap: () {
+                GoRouter.of(context).go('/reporta');
+                Navigator.pop(context);
+              },
+            )),
+        Visibility(
+            visible: Menu.logged,
+            child: ListTile(
+              leading: Icon(
+                Icons.assignment_late_rounded,
+                color: Theme.of(context).secondaryHeaderColor,
+              ),
+              title: const Text("Mis situaciones"),
+              onTap: () {
+                GoRouter.of(context).go('/situaciones');
+                Navigator.pop(context);
+              },
+            )),
+        ListTile(
           leading: Icon(Icons.history_edu_outlined,
               color: Theme.of(context).secondaryHeaderColor),
           title: const Text("Historia"),
           onTap: () {
             GoRouter.of(context).go('/historia');
-            Navigator.pop(context);  
+            Navigator.pop(context);
           },
         ),
         ListTile(
@@ -108,15 +141,17 @@ class Menu extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        ListTile(
-          leading: Icon(Icons.volunteer_activism_rounded,
-              color: Theme.of(context).secondaryHeaderColor),
-          title: const Text("Quiero ser voluntario"),
-          onTap: () {
-            GoRouter.of(context).go('/voluntario');
-            Navigator.pop(context);
-          },
-        ),
+        Visibility(
+            visible: Menu.logged,
+            child: ListTile(
+              leading: Icon(Icons.password,
+                  color: Theme.of(context).secondaryHeaderColor),
+              title: const Text("Cambiar contraseña"),
+              onTap: () {
+                GoRouter.of(context).go('/cambiar_clave');
+                Navigator.pop(context);
+              },
+            )),
         ListTile(
           leading:
               Icon(Icons.info, color: Theme.of(context).secondaryHeaderColor),
@@ -125,7 +160,39 @@ class Menu extends StatelessWidget {
             GoRouter.of(context).go('/info');
             Navigator.pop(context);
           },
-        )
+        ),
+        Divider(),
+        Spacer(),
+        // Menu.logged
+            ListTile(
+                tileColor: Colors.blue.shade900,
+                iconColor: Colors.orange.shade900,
+                textColor: Colors.white,
+                leading: Menu.logged? Icon(Icons.logout_rounded):Icon(Icons.login_rounded),
+                title: Menu.logged? Text("Cerrar sesion") : Text("Iniciar sesion") ,
+                onTap: () {
+                  setState(() {
+                    if(Menu.logged){
+                      Menu.logged = false;
+                      Menu.user = null;
+                    }
+                    GoRouter.of(context).go('/inicio_sesion');
+                    Navigator.pop(context);
+
+                  });
+                },
+              )
+            // : ListTile(
+            //     tileColor: Colors.blue.shade900,
+            //     iconColor: Colors.orange.shade900,
+            //     textColor: Colors.white,
+            //     leading: Icon(Icons.login_rounded),
+            //     title: Text("Iniciar sesion"),
+            //     onTap: () {
+            //       GoRouter.of(context).go('/inicio_sesion');
+            //       Navigator.pop(context);
+            //     },
+            //   )
       ]),
     );
   }

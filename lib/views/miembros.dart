@@ -1,7 +1,6 @@
 import 'package:defensa_civil/layout/navbar.dart';
 import 'package:defensa_civil/models/miembros_model.dart';
 import 'package:flutter/material.dart';
-
 import '../layout/menu.dart';
 import '../models/entidad.dart';
 import '../utils/http_fetcher.dart';
@@ -30,6 +29,7 @@ class _MiembrosState extends State<Miembros> {
         future: data,
         builder: (context, snapshot) {
           return Scaffold(
+            backgroundColor: Theme.of(context).secondaryHeaderColor,
             drawer: Menu(),
             appBar: NavBar(title: "Miembros"),
             body: CustomScrollView(slivers: [
@@ -40,23 +40,47 @@ class _MiembrosState extends State<Miembros> {
                         MiembrosModel miembroactual =
                             snapshot.data![index].getData();
                         return Container(
-                          margin: const EdgeInsets.only(top: 10),
-                          child: ListTile(
-                            key: Key("$index"),
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(miembroactual.foto),
-                            ),
-                            title: Text(miembroactual.nombre),
-                            subtitle: Text(miembroactual.cargo),
-                          ),
-                        );
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Container(
+                              child: Column(children: [
+                                Container(
+                                  child: CircleAvatar(
+                                    radius: 116,
+                                    backgroundColor: Colors.blue.shade400,
+                                    child: CircleAvatar(
+                                      radius: 113.5,
+                                      backgroundImage:
+                                          NetworkImage(miembroactual.foto),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(38),
+                                  child: Column(children: [
+                                    Text(miembroactual.cargo,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineSmall),
+                                    Container(
+                                      padding: EdgeInsets.only(top: 10),
+                                      child: Text(
+                                        miembroactual.nombre,
+                                        style: TextStyle(
+                                            color: Colors.orange.shade900,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )
+                                  ]),
+                                )
+                              ]),
+                            ));
                       }),
                     )
                   // ignore: prefer_const_constructors
                   : SliverToBoxAdapter(
                       child: Container(
                       height: MediaQuery.of(context).size.height,
-                      child: Center(child: CircularProgressIndicator()),
+                      child: Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor)),
                     ))
             ]),
           );
