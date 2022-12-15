@@ -173,7 +173,7 @@ class _HomeState extends State<Home> {
                               backgroundColor:
                                   Theme.of(context).secondaryHeaderColor),
                         ),
-                      )
+                      ),
                     ],
                   )
                 ],
