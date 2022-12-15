@@ -7,6 +7,7 @@ import 'package:defensa_civil/views/iniciar_sesion.dart';
 import 'package:defensa_civil/views/reporta.dart';
 import 'package:defensa_civil/views/servicio/servicios.dart';
 import 'package:defensa_civil/views/albergue/albergues.dart';
+import 'package:defensa_civil/views/situacion/mapa_situaciones.dart';
 import 'package:defensa_civil/views/situaciones.dart';
 import 'package:defensa_civil/views/video/Videos.dart';
 import 'package:defensa_civil/views/Voluntario.dart';
@@ -31,14 +32,23 @@ class MyApp extends StatelessWidget {
     GoRoute(path: '/noticias', builder: (context, state) => Noticias()),
     GoRoute(path: '/videos', builder: (context, state) => Videos()),
     GoRoute(path: '/albergues', builder: (context, state) => Albergues()),
-    GoRoute(path: '/medidas', builder: (context, state) => MedidasPreventivas()),
+    GoRoute(
+        path: '/medidas', builder: (context, state) => MedidasPreventivas()),
     GoRoute(path: '/miembros', builder: (context, state) => Miembros()),
-    GoRoute(path: '/voluntario', builder: (context, state) => const Voluntario()),
+    GoRoute(
+        path: '/voluntario', builder: (context, state) => const Voluntario()),
     GoRoute(path: '/info', builder: (context, state) => const Info()),
     GoRoute(path: '/reporta', builder: ((context, state) => const Reporta())),
-    GoRoute(path: '/inicio_sesion', builder: ((context, state) => InicioSesion())),
-    GoRoute(path: '/cambiar_clave', builder: ((context, state) => CambiarClave())),
+    GoRoute(
+        path: '/inicio_sesion', builder: ((context, state) => InicioSesion())),
+    GoRoute(
+        path: '/cambiar_clave', builder: ((context, state) => CambiarClave())),
     GoRoute(path: '/situaciones', builder: ((context, state) => Situaciones())),
+    GoRoute(
+        path: '/mapa_situaciones',
+        builder: ((context, state) => MapaSituaciones(
+              coords: [],
+            ))),
   ]);
 
   @override
@@ -57,8 +67,7 @@ class MyApp extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.bold),
-              displaySmall: TextStyle(color: Colors.white)
-            )),
+              displaySmall: TextStyle(color: Colors.white))),
     );
   }
 }

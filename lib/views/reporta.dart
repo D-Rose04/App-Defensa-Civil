@@ -29,7 +29,7 @@ class _ReportaState extends State<Reporta> {
   Widget build(BuildContext context) {
     final List<String> placeholder = [
       "Ingrese el título",
-      "Ingrese la dirección",
+      "Ingrese la descripción",
       "Ingrese la latitud",
       "Ingrese la longitud"
     ];
@@ -248,7 +248,7 @@ class _ReportaState extends State<Reporta> {
         image = File(imagePicked.path);
         final bytes = File(image!.path).readAsBytesSync();
         // base64Image = "data:image/png;base64," + base64Encode(bytes);
-         base64Image = base64Encode(bytes);
+        base64Image = base64Encode(bytes);
       }
     });
   }
