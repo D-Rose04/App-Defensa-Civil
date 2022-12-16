@@ -13,13 +13,12 @@ class _ServicioDetallesState extends State<ServicioDetalles> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         backgroundColor: Colors.blue.shade900,
         appBar: NavBar(title: widget.servicioActual.nombre),
         body: ListView(children: [
           Container(
-              padding: const EdgeInsets.all(10.0),
-            ),
+            padding: const EdgeInsets.all(10.0),
+          ),
           Container(
               child: CircleAvatar(
             radius: 116,
@@ -28,12 +27,7 @@ class _ServicioDetallesState extends State<ServicioDetalles> {
               radius: 113.5,
               backgroundImage: NetworkImage(widget.servicioActual.foto),
             ),
-          )
-              // width: 450,
-              // height: 350,
-              // padding: EdgeInsets.all(10.0),
-              //child: Image.network(widget.servicioActual.foto)
-              ),
+          )),
           Container(
             margin: EdgeInsets.all(15),
             child: Text(
@@ -47,17 +41,14 @@ class _ServicioDetallesState extends State<ServicioDetalles> {
             ),
           ),
           Container(
-            margin: EdgeInsets.all(15),
-            child: Text(
-              widget.servicioActual.descripcion,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-        appBar: NavBar(title: widget.servicioActual.voluntario),
-        body: Column(
-          children: [
+              margin: EdgeInsets.all(15),
+              child: Text(widget.servicioActual.descripcion,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold))),
+          Column(children: [
             Container(
                 width: 450,
                 height: 350,
@@ -67,9 +58,8 @@ class _ServicioDetallesState extends State<ServicioDetalles> {
                 child: Text(widget.servicioActual.voluntario,
                     overflow: TextOverflow.visible,
                     textAlign: TextAlign.center,
-                    style:
-                        const TextStyle(fontWeight: FontWeight.bold, fontSize: 20))
-            ),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20))),
             Container(
               padding: const EdgeInsets.all(10.0),
             ),
@@ -78,11 +68,11 @@ class _ServicioDetallesState extends State<ServicioDetalles> {
                 widget.servicioActual.titulo,
                 overflow: TextOverflow.visible,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontStyle: FontStyle.normal,
-                color: Colors.orange.shade900),
+                style: TextStyle(
+                    fontStyle: FontStyle.normal, color: Colors.orange.shade900),
               ),
             ),
-          ),
+          ]),
         ]));
   }
 }

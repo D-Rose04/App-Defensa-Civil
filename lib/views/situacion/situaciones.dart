@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:defensa_civil/models/entidad.dart';
 import 'package:defensa_civil/models/situacion_model.dart';
 import 'package:defensa_civil/utils/http_fetcher.dart';
+import 'package:defensa_civil/views/situacion/mapa_situaciones.dart';
 import 'package:defensa_civil/views/situacion/situaciones_detalles.dart';
 import 'package:defensa_civil/views/video/video_display.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class Situaciones extends StatefulWidget {
 }
 
 class _SituacionesState extends State<Situaciones> {
-  List data = [];
+  List<SituacionModel> data = [];
   handleData() async {
     var request = http.MultipartRequest('POST',
         Uri.parse('https://adamix.net/defensa_civil/def/situaciones.php'));
@@ -51,6 +52,24 @@ class _SituacionesState extends State<Situaciones> {
         backgroundColor: Colors.blue.shade900,
         appBar: NavBar(title: "Mis situaciones"),
         drawer: Menu(),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.orange.shade900,
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((context) => Scaffold(
+                          appBar: AppBar(
+                            title: Text("Mapa de situaciones"),
+                            backgroundColor: Colors.orange.shade900,
+                          ),
+                          body: MapaSituaciones(
+                            coords: data,
+                          ),
+                        ))));
+          },
+          child: Icon(Icons.map_outlined),
+        ),
         body: CustomScrollView(
           slivers: [
             data.isEmpty
@@ -99,13 +118,13 @@ class _SituacionesState extends State<Situaciones> {
                                 ),
                                 onTap: () {
                                   Navigator.push(
-                                    context, 
-                                    MaterialPageRoute(
-                                      builder: ((context) => 
-                                      SituacionDetalles(
-                                        situacionActual: situacionActual,
-                                      )
-                                      )));
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) =>
+                                              SituacionDetalles(
+                                                situacionActual:
+                                                    situacionActual,
+                                              ))));
                                 },
                               ),
                             )),
