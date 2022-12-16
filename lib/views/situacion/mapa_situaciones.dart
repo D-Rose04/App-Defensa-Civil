@@ -30,12 +30,12 @@ class _MapaSituacionesState extends State<MapaSituaciones> {
     for (int i = 0; i < widget.coords.length; i++) {
       Marker marker = Marker(
         markerId: const MarkerId('Location'),
-        position: LatLng(double.parse(widget.coords[i].longitud),
-            double.parse(widget.coords[i].latitud)),
+        position: LatLng(double.parse(widget.coords[i].latitud),
+            double.parse(widget.coords[i].longitud)),
         infoWindow: InfoWindow(
           title:
               '${widget.coords[i].titulo.toUpperCase()}\n${widget.coords[i].voluntario.toUpperCase()}',
-          snippet: '${widget.coords[i].longitud} ${widget.coords[i].latitud}',
+          snippet: '${widget.coords[i].latitud} ${widget.coords[i].longitud}',
         ),
       );
       markers.add(marker);
@@ -59,8 +59,8 @@ class _MapaSituacionesState extends State<MapaSituaciones> {
 
         controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
             zoom: 12,
-            target: LatLng(double.parse(widget.coords[0].longitud),
-                double.parse(widget.coords[0].latitud)))));
+            target: LatLng(double.parse(widget.coords[0].latitud),
+                double.parse(widget.coords[0].longitud)))));
       },
     );
   }

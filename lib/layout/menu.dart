@@ -41,16 +41,19 @@ class _MenuState extends State<Menu> {
                     AssetImage("images/escudo-de-republica-dominicana.jpg"),
               ),
             ]),
-        ListTile(
-          leading: Icon(
-            Icons.home,
-            color: Theme.of(context).secondaryHeaderColor,
+        Container(
+          padding: const EdgeInsets.only(top: 15),
+          child: ListTile(
+            leading: Icon(
+              Icons.home,
+              color: Theme.of(context).secondaryHeaderColor,
+            ),
+            title: Text("Inicio"),
+            onTap: () {
+              GoRouter.of(context).go('/inicio');
+              Navigator.pop(context);
+            },
           ),
-          title: Text("Inicio"),
-          onTap: () {
-            GoRouter.of(context).go('/inicio');
-            Navigator.pop(context);
-          },
         ),
         Visibility(
             visible: Menu.logged,
@@ -163,36 +166,34 @@ class _MenuState extends State<Menu> {
         ),
         Divider(),
         Spacer(),
-        // Menu.logged
-            ListTile(
+        Menu.logged
+            ? ListTile(
                 tileColor: Colors.blue.shade900,
                 iconColor: Colors.orange.shade900,
                 textColor: Colors.white,
-                leading: Menu.logged? Icon(Icons.logout_rounded):Icon(Icons.login_rounded),
-                title: Menu.logged? Text("Cerrar sesion") : Text("Iniciar sesion") ,
+                leading: Icon(Icons.logout_rounded),
+                title: Text("Cerrar sesion"),
                 onTap: () {
                   setState(() {
-                    if(Menu.logged){
-                      Menu.logged = false;
-                      Menu.user = null;
-                    }
+                    Menu.logged = false;
+                    Menu.user = null;
+
                     GoRouter.of(context).go('/inicio_sesion');
                     Navigator.pop(context);
-
                   });
                 },
               )
-            // : ListTile(
-            //     tileColor: Colors.blue.shade900,
-            //     iconColor: Colors.orange.shade900,
-            //     textColor: Colors.white,
-            //     leading: Icon(Icons.login_rounded),
-            //     title: Text("Iniciar sesion"),
-            //     onTap: () {
-            //       GoRouter.of(context).go('/inicio_sesion');
-            //       Navigator.pop(context);
-            //     },
-            //   )
+            : ListTile(
+                tileColor: Colors.blue.shade900,
+                iconColor: Colors.orange.shade900,
+                textColor: Colors.white,
+                leading: Icon(Icons.login_rounded),
+                title: Text("Iniciar sesion"),
+                onTap: () {
+                  GoRouter.of(context).go('/inicio_sesion');
+                  Navigator.pop(context);
+                },
+              )
       ]),
     );
   }
