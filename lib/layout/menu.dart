@@ -165,7 +165,6 @@ class _MenuState extends State<Menu> {
           },
         ),
         Divider(),
-        Spacer(),
         Menu.logged
             ? ListTile(
                 tileColor: Colors.blue.shade900,
